@@ -239,7 +239,7 @@ export default function App() {
             AI generates the SKILL.md – install with one click.
           </p>
           <a
-            href="https://docs.anthropic.com/en/docs/build-with-claude/claude-code/tutorials/skills"
+            href="https://claude.com/skills"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[#6a9bcc] hover:text-[#6a9bcc]/80 text-sm mt-4 transition"
@@ -393,7 +393,7 @@ export default function App() {
             </div>
             <span className="text-[#b0aea5]/20">•</span>
             <a
-              href="https://docs.anthropic.com/en/docs/build-with-claude/claude-code/tutorials/skills"
+              href="https://claude.com/skills"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#b0aea5] transition"
