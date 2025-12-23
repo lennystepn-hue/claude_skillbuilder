@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink, FileText, TestTube, Shield, Zap, MessageSquare, Database, Cloud, Bug, Sparkles } from "lucide-react";
+import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink, FileText, TestTube, Shield, Zap, MessageSquare, Database, Cloud, Bug, Sparkles, AlertTriangle, Coffee, Skull, PartyPopper } from "lucide-react";
 import toast from "react-hot-toast";
 
 // Claude Code Icon
@@ -35,6 +35,18 @@ const scrollingExamples = [
   { icon: <Sparkles size={14} />, label: "Refactor", category: "Dev" },
 ];
 
+// Easter egg error messages
+const funnyErrors = [
+  { title: "Error 418", message: "I'm a teapot ☕", icon: <Coffee size={16} /> },
+  { title: "Error 666", message: "Have you tried turning it off and on again?", icon: <Skull size={16} /> },
+  { title: "Warning", message: "This is fine. 🔥", icon: <AlertTriangle size={16} /> },
+  { title: "Error 404", message: "Motivation not found", icon: <Bug size={16} /> },
+  { title: "Fatal Error", message: "Task failed successfully!", icon: <Sparkles size={16} /> },
+  { title: "Error 42", message: "The answer was here all along", icon: <Zap size={16} /> },
+  { title: "Oops!", message: "You weren't supposed to click that", icon: <AlertTriangle size={16} /> },
+  { title: "Error 🤷", message: "Works on my machine", icon: <Terminal size={16} /> },
+];
+
 export default function App() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,6 +54,13 @@ export default function App() {
   const [apiKey, setApiKey] = useState("");
   const [useOwnKey, setUseOwnKey] = useState(false);
   const navigate = useNavigate();
+
+  // Easter egg states
+  const [chaosMode, setChaosMode] = useState(false);
+  const [glitching, setGlitching] = useState(false);
+  const [errorWindows, setErrorWindows] = useState([]);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [mainWindowHidden, setMainWindowHidden] = useState(false);
 
   // Load settings from localStorage
   useEffect(() => {
@@ -56,6 +75,67 @@ export default function App() {
     localStorage.setItem("use_own_key", useOwnKey.toString());
     toast.success("Settings saved!");
     setShowSettings(false);
+  };
+
+  // Easter egg: Red button click
+  const handleRedButtonClick = (e) => {
+    e.stopPropagation();
+
+    if (!chaosMode) {
+      // First click - start chaos
+      setChaosMode(true);
+      setGlitching(true);
+
+      setTimeout(() => {
+        setGlitching(false);
+        setMainWindowHidden(true);
+        // Spawn initial error windows
+        spawnErrorWindows(3);
+      }, 800);
+    }
+  };
+
+  const spawnErrorWindows = (count) => {
+    const newWindows = [];
+    for (let i = 0; i < count; i++) {
+      const error = funnyErrors[Math.floor(Math.random() * funnyErrors.length)];
+      newWindows.push({
+        id: Date.now() + i,
+        ...error,
+        x: Math.random() * 60 + 20, // 20-80%
+        y: Math.random() * 50 + 20, // 20-70%
+        rotation: (Math.random() - 0.5) * 20,
+      });
+    }
+    setErrorWindows(prev => [...prev, ...newWindows]);
+  };
+
+  const handleErrorWindowClose = (id) => {
+    // Remove this window
+    setErrorWindows(prev => prev.filter(w => w.id !== id));
+
+    // Check total clicks
+    const totalWindows = errorWindows.length;
+
+    if (totalWindows >= 6) {
+      // End the chaos with confetti
+      endChaos();
+    } else {
+      // Spawn more windows!
+      setTimeout(() => spawnErrorWindows(2), 100);
+    }
+  };
+
+  const endChaos = () => {
+    setShowConfetti(true);
+    setErrorWindows([]);
+
+    setTimeout(() => {
+      setShowConfetti(false);
+      setChaosMode(false);
+      setMainWindowHidden(false);
+      toast.success("Nice try! 😏", { icon: "🎉" });
+    }, 2000);
   };
 
   const handleGenerate = async () => {
@@ -145,13 +225,23 @@ export default function App() {
         </div>
 
         {/* Main Input Card */}
-        <div className="skill-card glow-strong">
+        <div
+          className={`skill-card glow-strong transition-all duration-300 ${
+            glitching ? "animate-pulse scale-95 opacity-50" : ""
+          } ${mainWindowHidden ? "scale-0 opacity-0 h-0 overflow-hidden mb-0" : ""}`}
+        >
           <div className="terminal-header -mx-6 -mt-6 mb-6 rounded-t-xl flex justify-between items-center pr-4">
             <div className="flex items-center gap-2">
-              <div className="terminal-dot bg-[#d97757]"></div>
+              <button
+                onClick={handleRedButtonClick}
+                className="terminal-dot bg-[#d97757] hover:bg-red-500 hover:scale-125 transition-all cursor-pointer"
+                title="Close? 🤔"
+              />
               <div className="terminal-dot bg-[#788c5d]"></div>
               <div className="terminal-dot bg-[#6a9bcc]"></div>
-              <span className="text-[#b0aea5] text-xs ml-2 font-mono">new-skill.md</span>
+              <span className="text-[#b0aea5] text-xs ml-2 font-mono">
+                {glitching ? "Not Responding..." : "new-skill.md"}
+              </span>
             </div>
             {useOwnKey && apiKey && (
               <span className="text-[#788c5d] text-xs font-mono flex items-center gap-1">
@@ -187,8 +277,58 @@ export default function App() {
           </button>
         </div>
 
+        {/* Easter Egg Error Windows */}
+        {errorWindows.map((window) => (
+          <div
+            key={window.id}
+            className="fixed z-50 animate-bounce-in"
+            style={{
+              left: `${window.x}%`,
+              top: `${window.y}%`,
+              transform: `translate(-50%, -50%) rotate(${window.rotation}deg)`,
+            }}
+          >
+            <div className="skill-card w-72 shadow-2xl border-red-500/30">
+              <div className="terminal-header -mx-6 -mt-6 mb-4 rounded-t-xl">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleErrorWindowClose(window.id)}
+                    className="terminal-dot bg-[#d97757] hover:bg-red-500 hover:scale-125 transition-all cursor-pointer"
+                  />
+                  <div className="terminal-dot bg-[#788c5d]"></div>
+                  <div className="terminal-dot bg-[#6a9bcc]"></div>
+                  <span className="text-[#b0aea5] text-xs ml-2 font-mono">{window.title}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="text-red-400">{window.icon}</div>
+                <p className="text-[#faf9f5] text-sm">{window.message}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Confetti Effect */}
+        {showConfetti && (
+          <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
+            <div className="text-6xl animate-bounce">🎉</div>
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute text-2xl animate-confetti"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 0.5}s`,
+                }}
+              >
+                {["🎊", "✨", "🎉", "⭐", "🌟"][Math.floor(Math.random() * 5)]}
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Quick Examples */}
-        <div className="mt-14">
+        <div className={`mt-14 transition-all ${mainWindowHidden ? "mt-0" : ""}`}>
           <p className="text-[#b0aea5]/60 text-sm text-center mb-5 font-mono">// or try an example</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {examples.map((ex, i) => (
