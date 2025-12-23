@@ -269,7 +269,7 @@ export default function Library() {
 
                       <Link
                         to={`/editor/${skill.id}`}
-                        className={`skill-card block ${selected.has(skill.id) ? "border-[#d97757]/50" : ""}`}
+                        className={`skill-card block h-32 ${selected.has(skill.id) ? "border-[#d97757]/50" : ""}`}
                       >
                         <div className="flex items-center gap-2 mb-3 pr-8">
                           <div className={`w-6 h-6 rounded flex items-center justify-center ${categoryColors[skill.category] || "bg-[#d97757]/20 text-[#d97757]"}`}>
