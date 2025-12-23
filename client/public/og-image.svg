@@ -1,0 +1,31 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#141413"/>
+  <rect x="50" y="50" width="1100" height="530" rx="20" fill="#1a1a19" stroke="#b0aea5" stroke-opacity="0.2"/>
+  
+  <!-- Icon -->
+  <rect x="100" y="200" width="80" height="80" rx="16" fill="#d97757"/>
+  <line x1="120" y1="225" x2="160" y2="225" stroke="#141413" stroke-width="5" stroke-linecap="round"/>
+  <line x1="120" y1="240" x2="150" y2="240" stroke="#141413" stroke-width="5" stroke-linecap="round"/>
+  <line x1="120" y1="255" x2="140" y2="255" stroke="#141413" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="155" cy="255" r="6" fill="#141413"/>
+  
+  <!-- Title -->
+  <text x="200" y="235" font-family="system-ui, sans-serif" font-size="48" font-weight="bold" fill="#faf9f5">Claude Skills Builder</text>
+  <text x="200" y="280" font-family="system-ui, sans-serif" font-size="24" fill="#b0aea5">Create Custom AI Skills for Claude Code</text>
+  
+  <!-- Features -->
+  <text x="100" y="380" font-family="monospace" font-size="20" fill="#d97757">✓</text>
+  <text x="130" y="380" font-family="system-ui, sans-serif" font-size="20" fill="#faf9f5">AI-powered skill generation</text>
+  
+  <text x="100" y="420" font-family="monospace" font-size="20" fill="#6a9bcc">✓</text>
+  <text x="130" y="420" font-family="system-ui, sans-serif" font-size="20" fill="#faf9f5">60+ pre-made skills</text>
+  
+  <text x="100" y="460" font-family="monospace" font-size="20" fill="#788c5d">✓</text>
+  <text x="130" y="460" font-family="system-ui, sans-serif" font-size="20" fill="#faf9f5">One-click install</text>
+  
+  <!-- URL -->
+  <text x="100" y="530" font-family="monospace" font-size="22" fill="#b0aea5">skills-claude.com</text>
+  
+  <!-- Powered by -->
+  <text x="900" y="530" font-family="system-ui, sans-serif" font-size="16" fill="#b0aea5" opacity="0.6">Powered by Claude</text>
+</svg>
