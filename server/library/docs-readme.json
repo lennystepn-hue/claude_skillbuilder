@@ -1,0 +1,10 @@
+{
+  "id": "premade-readme",
+  "name": "readme-generator",
+  "description": "Generate comprehensive README.md files for projects",
+  "category": "Docs",
+  "content": "---\nname: readme-generator\ndescription: When the user wants to create or improve a README file\n---\n\n# README Generator\n\n## Overview\nGenerate professional, comprehensive README.md files for any project.\n\n## Activation\nActivates when:\n- User says \"create readme\", \"generate readme\", or \"write readme\"\n- User asks for help documenting their project\n- User has a project without a README\n\n## Instructions\n\n1. Analyze the project structure:\n   - Check package.json, requirements.txt, or similar for project info\n   - Look at the main source files to understand functionality\n   - Check for existing documentation\n\n2. Generate README with these sections:\n   - **Title & Description**: Project name and one-line description\n   - **Features**: Key features as bullet points\n   - **Installation**: Step-by-step setup instructions\n   - **Usage**: How to use with code examples\n   - **Configuration**: Environment variables, config files\n   - **API** (if applicable): Endpoints or methods\n   - **Contributing**: How to contribute\n   - **License**: License information\n\n3. Use appropriate badges (build status, version, license)\n\n4. Include code blocks with proper syntax highlighting\n\n## Examples\n\n**Input:** \"create a readme for this project\"\n\n**Output:**\n```markdown\n# Project Name\n\n> Brief description of what the project does\n\n[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)\n\n## Features\n\n- Feature 1\n- Feature 2\n\n## Installation\n\n```bash\nnpm install\n```\n\n## Usage\n\n```javascript\nconst app = require('./app');\napp.start();\n```\n```",
+  "prompt": "A skill that generates comprehensive README.md documentation for my projects",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

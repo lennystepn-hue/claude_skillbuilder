@@ -1,0 +1,10 @@
+{
+  "id": "premade-docker",
+  "name": "dockerfile-generator",
+  "description": "Generate optimized Dockerfiles for any project",
+  "category": "DevOps",
+  "content": "---\nname: dockerfile-generator\ndescription: When the user wants to containerize their application\n---\n\n# Dockerfile Generator\n\n## Overview\nGenerate optimized, production-ready Dockerfiles for your projects.\n\n## Activation\nActivates when:\n- User says \"create dockerfile\", \"dockerize\", or \"containerize\"\n- User asks about Docker best practices\n- User wants to deploy with containers\n\n## Instructions\n\n1. Analyze the project:\n   - Detect language/framework (Node.js, Python, Go, etc.)\n   - Check package manager (npm, pip, go mod)\n   - Identify build requirements\n   - Note any required system dependencies\n\n2. Generate Dockerfile with best practices:\n   - Use official base images with specific tags\n   - Multi-stage builds to minimize image size\n   - Non-root user for security\n   - Proper layer caching (dependencies before code)\n   - .dockerignore file\n   - Health checks\n   - Proper signal handling\n\n3. Include:\n   - Dockerfile\n   - .dockerignore\n   - docker-compose.yml (if multi-service)\n   - Build and run commands\n\n## Examples\n\n**Input:** \"create a dockerfile for this Node.js app\"\n\n**Output:**\n```dockerfile\n# Build stage\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\n\n# Production stage\nFROM node:20-alpine\nWORKDIR /app\n\n# Security: non-root user\nRUN addgroup -g 1001 appgroup && \\\n    adduser -S -u 1001 -G appgroup appuser\n\nCOPY --from=builder /app/node_modules ./node_modules\nCOPY . .\n\nUSER appuser\nEXPOSE 3000\nHEALTHCHECK CMD wget -q --spider http://localhost:3000/health || exit 1\n\nCMD [\"node\", \"server.js\"]\n```\n\n```\n# .dockerignore\nnode_modules\n.git\n.env\n*.log\nDockerfile\n```",
+  "prompt": "A skill that generates optimized Dockerfiles with best practices",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

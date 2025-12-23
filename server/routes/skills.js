@@ -17,7 +17,12 @@ router.get("/", async (req, res) => {
         const data = await fs.readFile(path.join(LIBRARY_PATH, file), "utf-8");
         const skill = JSON.parse(data);
         if (skill.published) {
-          skills.push({ id: skill.id, name: skill.name, description: skill.description });
+          skills.push({
+            id: skill.id,
+            name: skill.name,
+            description: skill.description,
+            category: skill.category || "Dev"
+          });
         }
       }
     }
@@ -56,10 +61,10 @@ router.put("/:id", async (req, res) => {
     const filePath = path.join(LIBRARY_PATH, `${req.params.id}.json`);
     const data = await fs.readFile(filePath, "utf-8");
     const skill = JSON.parse(data);
-    
+
     const updated = { ...skill, ...req.body, id: skill.id };
     await fs.writeFile(filePath, JSON.stringify(updated, null, 2));
-    
+
     res.json({ skill: updated });
   } catch (error) {
     res.status(404).json({ error: "Skill not found." });
@@ -72,10 +77,10 @@ router.post("/:id/publish", async (req, res) => {
     const filePath = path.join(LIBRARY_PATH, `${req.params.id}.json`);
     const data = await fs.readFile(filePath, "utf-8");
     const skill = JSON.parse(data);
-    
+
     skill.published = true;
     await fs.writeFile(filePath, JSON.stringify(skill, null, 2));
-    
+
     res.json({ skill });
   } catch (error) {
     res.status(404).json({ error: "Skill not found." });

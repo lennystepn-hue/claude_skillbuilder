@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink } from "lucide-react";
+import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink, FileText, TestTube, Shield, Zap, MessageSquare, Database, Cloud, Bug, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
 
 // Claude Code Icon
@@ -18,6 +18,22 @@ const XIcon = ({ size = 14 }) => (
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
   </svg>
 );
+
+// Scrolling example skills
+const scrollingExamples = [
+  { icon: <GitBranch size={14} />, label: "Git Commits", category: "Dev" },
+  { icon: <FileText size={14} />, label: "README Generator", category: "Docs" },
+  { icon: <TestTube size={14} />, label: "Unit Tests", category: "Testing" },
+  { icon: <Shield size={14} />, label: "Security Audit", category: "Security" },
+  { icon: <MessageSquare size={14} />, label: "Code Review", category: "Dev" },
+  { icon: <Database size={14} />, label: "Schema Designer", category: "Data" },
+  { icon: <Cloud size={14} />, label: "Docker Config", category: "DevOps" },
+  { icon: <Bug size={14} />, label: "Debug Helper", category: "Dev" },
+  { icon: <FileCode size={14} />, label: "API Docs", category: "Docs" },
+  { icon: <Zap size={14} />, label: "Performance", category: "Dev" },
+  { icon: <Terminal size={14} />, label: "CLI Builder", category: "Dev" },
+  { icon: <Sparkles size={14} />, label: "Refactor", category: "Dev" },
+];
 
 export default function App() {
   const [prompt, setPrompt] = useState("");
@@ -48,7 +64,6 @@ export default function App() {
       return;
     }
 
-    // Check if using own key but no key provided
     if (useOwnKey && !apiKey) {
       toast.error("Please add your API key in settings.");
       setShowSettings(true);
@@ -58,8 +73,6 @@ export default function App() {
     setLoading(true);
     try {
       const headers = { "Content-Type": "application/json" };
-
-      // Add API key header if using own key
       if (useOwnKey && apiKey) {
         headers["X-API-Key"] = apiKey;
       }
@@ -91,7 +104,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen gradient-bg">
+    <div className="min-h-screen gradient-bg flex flex-col">
       {/* Nav */}
       <nav className="border-b border-[#b0aea5]/10 px-6 py-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
@@ -115,7 +128,7 @@ export default function App() {
         </div>
       </nav>
 
-      <main className="max-w-3xl mx-auto px-6 py-20">
+      <main className="flex-1 max-w-3xl mx-auto px-6 py-16">
         {/* Hero */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#d97757]/10 border border-[#d97757]/20 text-[#d97757] text-sm mb-6">
@@ -133,7 +146,6 @@ export default function App() {
 
         {/* Main Input Card */}
         <div className="skill-card glow-strong">
-          {/* Terminal Header */}
           <div className="terminal-header -mx-6 -mt-6 mb-6 rounded-t-xl flex justify-between items-center pr-4">
             <div className="flex items-center gap-2">
               <div className="terminal-dot bg-[#d97757]"></div>
@@ -175,7 +187,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* Examples */}
+        {/* Quick Examples */}
         <div className="mt-14">
           <p className="text-[#b0aea5]/60 text-sm text-center mb-5 font-mono">// or try an example</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -198,7 +210,7 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-14">
           <p className="text-[#b0aea5]/40 text-xs font-mono mb-3">
             Skills are saved to ~/.claude/skills/
           </p>
@@ -220,6 +232,25 @@ export default function App() {
           </div>
         </div>
       </main>
+
+      {/* Scrolling Examples Marquee */}
+      <div className="border-t border-[#b0aea5]/10 overflow-hidden py-4 bg-[#141413]/50">
+        <div className="marquee">
+          <div className="marquee-content">
+            {[...scrollingExamples, ...scrollingExamples].map((ex, i) => (
+              <div
+                key={i}
+                className="inline-flex items-center gap-2 px-4 py-2 mx-2 rounded-full bg-[#b0aea5]/5 border border-[#b0aea5]/10 text-[#b0aea5] text-xs whitespace-nowrap"
+              >
+                {ex.icon}
+                <span>{ex.label}</span>
+                <span className="text-[#b0aea5]/40">•</span>
+                <span className="text-[#d97757]/60">{ex.category}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Settings Modal */}
       {showSettings && (

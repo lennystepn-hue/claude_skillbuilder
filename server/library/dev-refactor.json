@@ -1,0 +1,10 @@
+{
+  "id": "premade-refactor",
+  "name": "code-refactorer",
+  "description": "Refactor code for better readability and maintainability",
+  "category": "Dev",
+  "content": "---\nname: code-refactorer\ndescription: When the user wants to improve code quality\n---\n\n# Code Refactorer\n\n## Overview\nRefactor code to improve readability, maintainability, and performance.\n\n## Activation\nActivates when:\n- User says \"refactor\", \"clean up\", or \"improve this code\"\n- User asks about code quality or best practices\n- User wants to reduce complexity\n\n## Instructions\n\n1. Analyze the code:\n   - Identify code smells (long methods, duplicate code, etc.)\n   - Check for violations of SOLID principles\n   - Look for performance issues\n   - Assess readability and naming\n\n2. Plan refactoring:\n   - Prioritize changes by impact\n   - Ensure behavior is preserved\n   - Consider test coverage\n\n3. Apply refactoring patterns:\n   - **Extract Method**: Break up long functions\n   - **Rename**: Use descriptive names\n   - **Remove Duplication**: DRY principle\n   - **Simplify Conditionals**: Guard clauses, early returns\n   - **Decompose**: Single responsibility\n\n4. Explain changes:\n   - What was changed and why\n   - Benefits of the refactoring\n   - Any trade-offs made\n\n## Examples\n\n**Input:** \"refactor this\"\n```javascript\nfunction process(d) {\n  if (d) {\n    if (d.items) {\n      let t = 0;\n      for (let i = 0; i < d.items.length; i++) {\n        t = t + d.items[i].price * d.items[i].qty;\n      }\n      return t;\n    }\n  }\n  return 0;\n}\n```\n\n**Output:**\n```javascript\nfunction calculateOrderTotal(order) {\n  if (!order?.items?.length) {\n    return 0;\n  }\n  \n  return order.items.reduce(\n    (total, item) => total + item.price * item.qty,\n    0\n  );\n}\n```\n\n**Changes:**\n- ✅ Descriptive function name\n- ✅ Guard clause instead of nested ifs\n- ✅ Optional chaining for safety\n- ✅ Reduce instead of manual loop\n- ✅ Clear variable names",
+  "prompt": "A skill that refactors my code for better readability and maintainability",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

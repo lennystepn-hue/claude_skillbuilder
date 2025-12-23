@@ -1,0 +1,10 @@
+{
+  "id": "premade-testing",
+  "name": "unit-test-writer",
+  "description": "Generate unit tests for functions and components",
+  "category": "Testing",
+  "content": "---\nname: unit-test-writer\ndescription: When the user wants to write tests or asks for test coverage\n---\n\n# Unit Test Writer\n\n## Overview\nAutomatically generate comprehensive unit tests for your code.\n\n## Activation\nActivates when:\n- User says \"write tests\", \"add tests\", or \"test this\"\n- User asks for test coverage\n- User mentions Jest, Vitest, pytest, or other test frameworks\n\n## Instructions\n\n1. Analyze the target code:\n   - Identify the function/class to test\n   - Understand inputs, outputs, and side effects\n   - Note edge cases and error conditions\n\n2. Determine the test framework:\n   - JavaScript: Jest or Vitest\n   - Python: pytest\n   - Match existing project conventions\n\n3. Generate tests covering:\n   - **Happy path**: Normal expected inputs\n   - **Edge cases**: Empty inputs, boundaries, nulls\n   - **Error cases**: Invalid inputs, exceptions\n   - **Integration**: If the function calls other modules\n\n4. Follow best practices:\n   - Descriptive test names\n   - Arrange-Act-Assert pattern\n   - One assertion per test when possible\n   - Mock external dependencies\n\n## Examples\n\n**Input:** \"write tests for this function\"\n```javascript\nfunction calculateTotal(items) {\n  return items.reduce((sum, item) => sum + item.price * item.quantity, 0);\n}\n```\n\n**Output:**\n```javascript\ndescribe('calculateTotal', () => {\n  it('should return 0 for empty array', () => {\n    expect(calculateTotal([])).toBe(0);\n  });\n\n  it('should calculate total for single item', () => {\n    const items = [{ price: 10, quantity: 2 }];\n    expect(calculateTotal(items)).toBe(20);\n  });\n\n  it('should calculate total for multiple items', () => {\n    const items = [\n      { price: 10, quantity: 2 },\n      { price: 5, quantity: 3 }\n    ];\n    expect(calculateTotal(items)).toBe(35);\n  });\n});\n```",
+  "prompt": "A skill that writes comprehensive unit tests for my functions",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

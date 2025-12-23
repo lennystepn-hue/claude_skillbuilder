@@ -1,0 +1,10 @@
+{
+  "id": "premade-debug",
+  "name": "debug-helper",
+  "description": "Help debug errors and find root causes",
+  "category": "Dev",
+  "content": "---\nname: debug-helper\ndescription: When the user encounters an error or bug\n---\n\n# Debug Helper\n\n## Overview\nHelp identify root causes of errors and provide step-by-step debugging guidance.\n\n## Activation\nActivates when:\n- User shares an error message or stack trace\n- User says \"debug\", \"fix this error\", or \"why isn't this working\"\n- User describes unexpected behavior\n\n## Instructions\n\n1. Analyze the error:\n   - Read the full error message and stack trace\n   - Identify the error type (syntax, runtime, logic)\n   - Find the file and line number\n   - Look for relevant context\n\n2. Investigate:\n   - Check the code at the error location\n   - Look at recent changes (git diff)\n   - Check dependencies and their versions\n   - Look for common patterns causing this error\n\n3. Diagnose:\n   - Explain what the error means in plain English\n   - Identify the most likely cause\n   - Consider alternative causes\n\n4. Provide solution:\n   - Step-by-step fix instructions\n   - Code changes needed\n   - How to verify the fix\n   - How to prevent similar issues\n\n## Examples\n\n**Input:**\n```\nTypeError: Cannot read properties of undefined (reading 'map')\n  at UserList (UserList.jsx:12:18)\n```\n\n**Output:**\n```\n🔍 Error Analysis:\n\nThe error occurs because you're calling .map() on a variable that is undefined.\n\nLocation: UserList.jsx, line 12\n\n🔧 Most Likely Cause:\nThe 'users' data hasn't loaded yet when the component renders.\n\n✅ Fix:\n```jsx\n// Before\nreturn users.map(user => <User key={user.id} {...user} />);\n\n// After - Add a guard\nreturn users?.map(user => <User key={user.id} {...user} />) || <Loading />;\n```\n\n💡 Prevention:\n- Always initialize arrays: useState([])\n- Use optional chaining: data?.items?.map()\n- Add loading states for async data\n```",
+  "prompt": "A skill that helps me debug errors and find root causes",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

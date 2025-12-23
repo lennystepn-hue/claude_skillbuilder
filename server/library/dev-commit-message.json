@@ -1,0 +1,10 @@
+{
+  "id": "premade-commit",
+  "name": "conventional-commits",
+  "description": "Generate conventional commit messages based on staged changes",
+  "category": "Dev",
+  "content": "---\nname: conventional-commits\ndescription: When the user wants to commit changes or asks for a commit message\n---\n\n# Conventional Commits\n\n## Overview\nAutomatically generate conventional commit messages based on your staged changes.\n\n## Activation\nActivates when:\n- User says \"commit\", \"git commit\", or \"commit my changes\"\n- User asks for help with commit messages\n- User runs `/commit`\n\n## Instructions\n\n1. Run `git diff --staged` to see what's being committed\n2. Analyze the changes to understand:\n   - What type of change (feat, fix, docs, style, refactor, test, chore)\n   - What scope/area is affected\n   - What the change accomplishes\n3. Generate a commit message following Conventional Commits format:\n   ```\n   <type>(<scope>): <description>\n   \n   [optional body]\n   \n   [optional footer]\n   ```\n4. Present the message and ask for confirmation before committing\n\n## Examples\n\n**Input:** \"commit my changes\"\n\n**Steps:**\n```bash\ngit diff --staged\n# Shows: modified src/auth/login.js - added password validation\n```\n\n**Output:**\n```\nfeat(auth): add password strength validation\n\nAdded minimum length and complexity requirements for passwords\n```\n\n## Commit Types\n- `feat`: New feature\n- `fix`: Bug fix\n- `docs`: Documentation\n- `style`: Formatting, no code change\n- `refactor`: Code restructuring\n- `test`: Adding tests\n- `chore`: Maintenance tasks",
+  "prompt": "A skill that automatically writes conventional commit messages based on staged changes",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

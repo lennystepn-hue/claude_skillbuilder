@@ -1,0 +1,9 @@
+{
+  "id": "jmndqCC__b",
+  "name": "token-usage-counter",
+  "description": "Automatically counts and reports token usage for conversations when requested.",
+  "content": "---\nname: token-usage-counter\ndescription: Automatically counts and reports token usage for conversations when requested.\n---\n\n# Token Usage Counter\n\n## Overview\nThis skill tracks and reports the approximate token usage in conversations, helping users monitor their API consumption.\n\n## Activation\nWhen the user asks about token usage, token count, or requests information about conversation length/cost.\n\n## Instructions\n1. Analyze the current conversation length and complexity\n2. Provide an estimated token count for:\n   - Input tokens (user messages)\n   - Output tokens (assistant responses)\n   - Total tokens used\n3. Explain the basis for the estimation (e.g., rough word-to-token ratio)\n4. Offer context about token limits and usage implications\n5. Suggest ways to optimize token usage if the conversation is lengthy\n\n## Examples\n\n**Input:** \"How many tokens have we used so far?\"\n\n**Output:** \"Based on our conversation, I estimate we've used approximately:\n- Input tokens: ~450 tokens\n- Output tokens: ~600 tokens\n- Total: ~1,050 tokens\n\nThis is estimated using roughly 1.3 tokens per word. Our conversation includes your questions and my detailed responses about [topic]. This represents a small fraction of typical context windows (8K-200K+ tokens depending on the model).\"\n\n**Input:** \"Am I using too many tokens?\"\n\n**Output:** \"Current estimated usage: ~2,200 tokens total. This is well within normal ranges. To optimize token usage, you could:\n- Ask more focused questions\n- Request shorter responses\n- Summarize key points before continuing complex discussions\"",
+  "prompt": "A skill that counts my token usage",
+  "createdAt": "2025-12-23T17:36:21.720Z",
+  "published": true
+}

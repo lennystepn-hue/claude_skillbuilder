@@ -96,6 +96,32 @@ body {
   @apply w-3 h-3 rounded-full;
 }
 
+/* Marquee Animation */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
