@@ -1,5 +1,5 @@
 {
-  "id": "premade-seed-data",
+  "id": "data-seed",
   "name": "seed-data-generator",
   "description": "Generate database seed data",
   "category": "Data",

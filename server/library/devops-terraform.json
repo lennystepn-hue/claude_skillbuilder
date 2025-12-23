@@ -1,5 +1,5 @@
 {
-  "id": "premade-terraform",
+  "id": "devops-terraform",
   "name": "terraform-generator",
   "description": "Generate Terraform infrastructure code",
   "category": "DevOps",

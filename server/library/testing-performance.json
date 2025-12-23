@@ -1,5 +1,5 @@
 {
-  "id": "premade-perf-test",
+  "id": "testing-performance",
   "name": "performance-test-writer",
   "description": "Generate performance and load tests",
   "category": "Testing",

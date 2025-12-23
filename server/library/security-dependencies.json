@@ -1,5 +1,5 @@
 {
-  "id": "premade-dep-security",
+  "id": "security-dependencies",
   "name": "dependency-scanner",
   "description": "Scan dependencies for vulnerabilities",
   "category": "Security",

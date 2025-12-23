@@ -1,5 +1,5 @@
 {
-  "id": "premade-query-optimizer",
+  "id": "data-query-optimizer",
   "name": "query-optimizer",
   "description": "Optimize slow database queries",
   "category": "Data",

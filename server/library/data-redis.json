@@ -1,5 +1,5 @@
 {
-  "id": "premade-redis",
+  "id": "data-redis",
   "name": "redis-caching",
   "description": "Implement Redis caching strategies",
   "category": "Data",

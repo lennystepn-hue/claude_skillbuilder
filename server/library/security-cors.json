@@ -1,5 +1,5 @@
 {
-  "id": "premade-cors-security",
+  "id": "security-cors",
   "name": "cors-configurator",
   "description": "Configure CORS securely",
   "category": "Security",

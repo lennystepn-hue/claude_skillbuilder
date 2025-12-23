@@ -1,5 +1,5 @@
 {
-  "id": "premade-monitoring",
+  "id": "devops-monitoring",
   "name": "monitoring-setup",
   "description": "Set up application monitoring and alerting",
   "category": "DevOps",

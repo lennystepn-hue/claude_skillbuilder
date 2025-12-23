@@ -1,5 +1,5 @@
 {
-  "id": "premade-test-coverage",
+  "id": "testing-coverage",
   "name": "coverage-improver",
   "description": "Identify and fill gaps in test coverage",
   "category": "Testing",

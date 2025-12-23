@@ -1,5 +1,5 @@
 {
-  "id": "premade-mock-generator",
+  "id": "testing-mock",
   "name": "mock-generator",
   "description": "Generate mocks and stubs for testing",
   "category": "Testing",

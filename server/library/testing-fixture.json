@@ -1,5 +1,5 @@
 {
-  "id": "premade-test-fixtures",
+  "id": "testing-fixture",
   "name": "test-fixture-generator",
   "description": "Generate test fixtures and factory functions",
   "category": "Testing",

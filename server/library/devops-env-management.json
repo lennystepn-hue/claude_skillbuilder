@@ -1,5 +1,5 @@
 {
-  "id": "premade-env-management",
+  "id": "devops-env-management",
   "name": "environment-manager",
   "description": "Manage environment configurations across stages",
   "category": "DevOps",

@@ -1,5 +1,5 @@
 {
-  "id": "premade-commit",
+  "id": "dev-commit-message",
   "name": "conventional-commits",
   "description": "Generate conventional commit messages based on staged changes",
   "category": "Dev",

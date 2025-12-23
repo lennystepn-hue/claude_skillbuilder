@@ -1,5 +1,5 @@
 {
-  "id": "premade-debug",
+  "id": "dev-debug",
   "name": "debug-helper",
   "description": "Help debug errors and find root causes",
   "category": "Dev",

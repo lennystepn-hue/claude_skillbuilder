@@ -1,5 +1,5 @@
 {
-  "id": "premade-docker",
+  "id": "devops-docker",
   "name": "dockerfile-generator",
   "description": "Generate optimized Dockerfiles for any project",
   "category": "DevOps",

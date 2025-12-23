@@ -1,5 +1,5 @@
 {
-  "id": "premade-react-test",
+  "id": "testing-react",
   "name": "react-component-tester",
   "description": "Generate React component tests with Testing Library",
   "category": "Testing",

@@ -1,5 +1,5 @@
 {
-  "id": "premade-mongodb",
+  "id": "data-mongodb",
   "name": "mongodb-schema-generator",
   "description": "Design MongoDB schemas and aggregations",
   "category": "Data",

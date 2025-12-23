@@ -1,5 +1,5 @@
 {
-  "id": "premade-prisma",
+  "id": "data-prisma",
   "name": "prisma-schema-generator",
   "description": "Generate Prisma schemas and queries",
   "category": "Data",

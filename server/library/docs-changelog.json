@@ -1,5 +1,5 @@
 {
-  "id": "premade-changelog",
+  "id": "docs-changelog",
   "name": "changelog-generator",
   "description": "Generate changelogs from git history",
   "category": "Docs",

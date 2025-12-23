@@ -1,5 +1,5 @@
 {
-  "id": "premade-cicd",
+  "id": "devops-cicd",
   "name": "cicd-pipeline-generator",
   "description": "Generate CI/CD pipeline configurations",
   "category": "DevOps",

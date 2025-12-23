@@ -1,5 +1,5 @@
 {
-  "id": "premade-error-handler",
+  "id": "dev-error-handler",
   "name": "error-handler-generator",
   "description": "Generate proper error handling code",
   "category": "Dev",

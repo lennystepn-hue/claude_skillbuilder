@@ -1,5 +1,5 @@
 {
-  "id": "premade-graphql",
+  "id": "data-graphql",
   "name": "graphql-schema-generator",
   "description": "Generate GraphQL schemas and resolvers",
   "category": "Data",

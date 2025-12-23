@@ -1,5 +1,5 @@
 {
-  "id": "premade-schema",
+  "id": "data-schema",
   "name": "database-schema-designer",
   "description": "Design database schemas from requirements",
   "category": "Data",

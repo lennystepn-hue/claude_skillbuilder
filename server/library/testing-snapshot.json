@@ -1,5 +1,5 @@
 {
-  "id": "premade-snapshot-test",
+  "id": "testing-snapshot",
   "name": "snapshot-test-writer",
   "description": "Generate snapshot tests for components",
   "category": "Testing",

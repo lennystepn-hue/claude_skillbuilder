@@ -1,5 +1,5 @@
 {
-  "id": "premade-security",
+  "id": "security-audit",
   "name": "security-auditor",
   "description": "Audit code for security vulnerabilities",
   "category": "Security",

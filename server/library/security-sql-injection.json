@@ -1,5 +1,5 @@
 {
-  "id": "premade-sql-injection",
+  "id": "security-sql-injection",
   "name": "sql-injection-prevention",
   "description": "Prevent SQL injection vulnerabilities",
   "category": "Security",

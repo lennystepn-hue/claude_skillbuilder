@@ -1,5 +1,5 @@
 {
-  "id": "premade-ssl",
+  "id": "devops-ssl",
   "name": "ssl-certificate-manager",
   "description": "Set up and manage SSL/TLS certificates",
   "category": "DevOps",

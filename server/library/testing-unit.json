@@ -1,5 +1,5 @@
 {
-  "id": "premade-testing",
+  "id": "testing-unit",
   "name": "unit-test-writer",
   "description": "Generate unit tests for functions and components",
   "category": "Testing",

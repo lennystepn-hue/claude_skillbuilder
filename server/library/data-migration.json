@@ -1,5 +1,5 @@
 {
-  "id": "premade-migration",
+  "id": "data-migration",
   "name": "database-migration-generator",
   "description": "Generate database migrations",
   "category": "Data",

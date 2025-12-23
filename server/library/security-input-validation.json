@@ -1,5 +1,5 @@
 {
-  "id": "premade-input-validation",
+  "id": "security-input-validation",
   "name": "input-validator",
   "description": "Validate and sanitize user input",
   "category": "Security",

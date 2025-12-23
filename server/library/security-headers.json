@@ -1,5 +1,5 @@
 {
-  "id": "premade-security-headers",
+  "id": "security-headers",
   "name": "security-headers",
   "description": "Configure HTTP security headers",
   "category": "Security",

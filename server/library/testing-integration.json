@@ -1,5 +1,5 @@
 {
-  "id": "premade-integration-test",
+  "id": "testing-integration",
   "name": "integration-test-writer",
   "description": "Generate integration tests for APIs and services",
   "category": "Testing",

@@ -1,5 +1,5 @@
 {
-  "id": "premade-auth-security",
+  "id": "security-auth",
   "name": "auth-security-checker",
   "description": "Review authentication and authorization security",
   "category": "Security",

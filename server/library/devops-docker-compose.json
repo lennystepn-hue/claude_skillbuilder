@@ -1,5 +1,5 @@
 {
-  "id": "premade-docker-compose",
+  "id": "devops-docker-compose",
   "name": "docker-compose-generator",
   "description": "Generate docker-compose.yml files",
   "category": "DevOps",

@@ -1,5 +1,5 @@
 {
-  "id": "premade-nginx",
+  "id": "devops-nginx",
   "name": "nginx-configurator",
   "description": "Generate Nginx configurations",
   "category": "DevOps",

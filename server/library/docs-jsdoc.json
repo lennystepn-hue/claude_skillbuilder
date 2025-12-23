@@ -1,5 +1,5 @@
 {
-  "id": "premade-jsdoc",
+  "id": "docs-jsdoc",
   "name": "jsdoc-generator",
   "description": "Generate JSDoc comments for JavaScript/TypeScript",
   "category": "Docs",

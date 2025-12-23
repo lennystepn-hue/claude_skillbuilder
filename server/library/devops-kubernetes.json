@@ -1,5 +1,5 @@
 {
-  "id": "premade-kubernetes",
+  "id": "devops-kubernetes",
   "name": "kubernetes-config",
   "description": "Generate Kubernetes manifests and configurations",
   "category": "DevOps",

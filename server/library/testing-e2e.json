@@ -1,5 +1,5 @@
 {
-  "id": "premade-e2e-test",
+  "id": "testing-e2e",
   "name": "e2e-test-writer",
   "description": "Generate end-to-end tests with Playwright or Cypress",
   "category": "Testing",

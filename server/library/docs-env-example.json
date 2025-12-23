@@ -1,5 +1,5 @@
 {
-  "id": "premade-env-example",
+  "id": "docs-env-example",
   "name": "env-documenter",
   "description": "Generate .env.example with documentation",
   "category": "Docs",

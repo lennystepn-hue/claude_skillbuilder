@@ -1,5 +1,5 @@
 {
-  "id": "premade-rate-limiting",
+  "id": "security-rate-limiting",
   "name": "rate-limiter",
   "description": "Implement rate limiting for APIs",
   "category": "Security",

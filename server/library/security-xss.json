@@ -1,5 +1,5 @@
 {
-  "id": "premade-xss-prevention",
+  "id": "security-xss",
   "name": "xss-prevention",
   "description": "Prevent XSS vulnerabilities in code",
   "category": "Security",

@@ -1,5 +1,5 @@
 {
-  "id": "premade-api-test",
+  "id": "testing-api",
   "name": "api-test-writer",
   "description": "Generate API endpoint tests with supertest",
   "category": "Testing",
