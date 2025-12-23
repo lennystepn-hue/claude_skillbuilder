@@ -1,0 +1,10 @@
+{
+  "id": "premade-typescript",
+  "name": "typescript-converter",
+  "description": "Convert JavaScript to TypeScript with proper types",
+  "category": "Dev",
+  "content": "---\nname: typescript-converter\ndescription: When the user wants to convert JS to TypeScript\ncategory: Dev\n---\n\n# TypeScript Converter\n\n## Overview\nConvert JavaScript code to TypeScript with proper type annotations.\n\n## Activation\nActivates when user mentions \"convert to typescript\", \"add types\", or \"typescript migration\".\n\n## Instructions\n\n1. Analyze the JavaScript code\n2. Infer types from:\n   - Variable assignments\n   - Function parameters and returns\n   - Object shapes\n   - API responses\n\n3. Add:\n   - Interface definitions\n   - Type annotations\n   - Generic types where appropriate\n   - Strict null checks\n\n4. Handle edge cases:\n   - Any types (minimize usage)\n   - Union types\n   - Optional properties\n\n## Examples\n\n**Input:**\n```javascript\nfunction getUser(id) {\n  return { id, name: 'John', email: 'john@example.com' };\n}\n```\n\n**Output:**\n```typescript\ninterface User {\n  id: number;\n  name: string;\n  email: string;\n}\n\nfunction getUser(id: number): User {\n  return { id, name: 'John', email: 'john@example.com' };\n}\n```",
+  "prompt": "A skill that converts JavaScript to TypeScript with proper types",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

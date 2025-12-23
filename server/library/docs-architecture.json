@@ -1,0 +1,10 @@
+{
+  "id": "premade-architecture",
+  "name": "architecture-documenter",
+  "description": "Document system architecture and design decisions",
+  "category": "Docs",
+  "content": "---\nname: architecture-documenter\ndescription: When the user wants to document system architecture\ncategory: Docs\n---\n\n# Architecture Documenter\n\n## Overview\nCreate architecture documentation with diagrams and decision records.\n\n## Activation\nActivates when user mentions \"architecture doc\", \"system design\", \"ADR\", or \"technical documentation\".\n\n## Instructions\n\n1. Analyze codebase structure\n2. Generate:\n   - System overview diagram (Mermaid)\n   - Component descriptions\n   - Data flow documentation\n   - Architecture Decision Records (ADRs)\n\n## Examples\n\n**Input:** \"document the architecture\"\n\n**Output:**\n```markdown\n# Architecture Overview\n\n## System Diagram\n```mermaid\ngraph TB\n    Client[Web Client] --> API[API Gateway]\n    API --> Auth[Auth Service]\n    API --> Users[User Service]\n    API --> Orders[Order Service]\n    Users --> DB[(PostgreSQL)]\n    Orders --> DB\n    Orders --> Queue[Redis Queue]\n    Queue --> Worker[Background Worker]\n```\n\n## Components\n\n### API Gateway\n- **Tech:** Express.js\n- **Purpose:** Route requests, rate limiting\n- **Port:** 3000\n\n### User Service\n- **Tech:** Node.js\n- **Purpose:** User CRUD, authentication\n```",
+  "prompt": "A skill that documents system architecture",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

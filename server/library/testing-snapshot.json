@@ -1,0 +1,10 @@
+{
+  "id": "premade-snapshot-test",
+  "name": "snapshot-test-writer",
+  "description": "Generate snapshot tests for components",
+  "category": "Testing",
+  "content": "---\nname: snapshot-test-writer\ndescription: When the user needs snapshot tests\ncategory: Testing\n---\n\n# Snapshot Test Writer\n\n## Overview\nGenerate snapshot tests for React components and data structures.\n\n## Activation\nActivates when user mentions \"snapshot test\", \"component test\", or \"render test\".\n\n## Instructions\n\n1. Identify components to test\n2. Create snapshots for:\n   - Default render\n   - Different prop combinations\n   - Different states\n\n3. Best practices:\n   - Keep snapshots focused\n   - Use inline snapshots for small outputs\n   - Update snapshots intentionally\n\n## Examples\n\n**Input:** \"snapshot tests for Button component\"\n\n**Output:**\n```javascript\nimport { render } from '@testing-library/react';\nimport Button from './Button';\n\ndescribe('Button', () => {\n  it('renders default button', () => {\n    const { container } = render(<Button>Click me</Button>);\n    expect(container).toMatchSnapshot();\n  });\n\n  it('renders primary variant', () => {\n    const { container } = render(\n      <Button variant=\"primary\">Primary</Button>\n    );\n    expect(container).toMatchSnapshot();\n  });\n\n  it('renders disabled state', () => {\n    const { container } = render(\n      <Button disabled>Disabled</Button>\n    );\n    expect(container).toMatchSnapshot();\n  });\n\n  it('renders with icon', () => {\n    const { container } = render(\n      <Button icon={<IconPlus />}>Add Item</Button>\n    );\n    expect(container).toMatchSnapshot();\n  });\n});\n```",
+  "prompt": "A skill that generates snapshot tests for components",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

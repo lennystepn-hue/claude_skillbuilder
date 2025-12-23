@@ -17,6 +17,7 @@ Format:
 ---
 name: skill-name-kebab-case
 description: Short description (1 sentence) when the skill activates
+category: Dev|Docs|Testing|Security|DevOps|Data
 ---
 
 # Skill Name
@@ -31,7 +32,15 @@ When this skill automatically activates (e.g., "When the user asks for X...")
 Detailed step-by-step instructions for what Claude should do.
 
 ## Examples
-Concrete examples for input/output.`;
+Concrete examples for input/output.
+
+CATEGORIES (choose ONE):
+- Dev: Code generation, debugging, refactoring, git workflows
+- Docs: Documentation, README, API docs, comments
+- Testing: Unit tests, integration tests, test coverage
+- Security: Security audits, vulnerability scanning, auth
+- DevOps: Docker, CI/CD, deployment, infrastructure
+- Data: Database schemas, data modeling, migrations`;
 
 async function callClaudeAPI(userPrompt, anthropicClient) {
   const message = await anthropicClient.messages.create({

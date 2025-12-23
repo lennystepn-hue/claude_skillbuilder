@@ -1,0 +1,10 @@
+{
+  "id": "premade-security-headers",
+  "name": "security-headers",
+  "description": "Configure HTTP security headers",
+  "category": "Security",
+  "content": "---\nname: security-headers\ndescription: When the user needs to add security headers\ncategory: Security\n---\n\n# Security Headers\n\n## Overview\nConfigure HTTP security headers to protect against common attacks.\n\n## Activation\nActivates when user mentions \"security headers\", \"helmet\", \"CSP\", \"HSTS\", or \"X-Frame-Options\".\n\n## Instructions\n\n1. Essential headers:\n   - Content-Security-Policy\n   - X-Frame-Options\n   - X-Content-Type-Options\n   - Strict-Transport-Security\n   - Referrer-Policy\n\n2. Use helmet.js for Express\n\n## Examples\n\n**Using Helmet:**\n```javascript\nimport helmet from 'helmet';\n\napp.use(helmet({\n  contentSecurityPolicy: {\n    directives: {\n      defaultSrc: [\"'self'\"],\n      scriptSrc: [\"'self'\", \"'unsafe-inline'\"],\n      styleSrc: [\"'self'\", \"'unsafe-inline'\", \"https://fonts.googleapis.com\"],\n      imgSrc: [\"'self'\", \"data:\", \"https:\"],\n      fontSrc: [\"'self'\", \"https://fonts.gstatic.com\"],\n      connectSrc: [\"'self'\", \"https://api.example.com\"],\n    },\n  },\n  hsts: {\n    maxAge: 31536000,\n    includeSubDomains: true,\n    preload: true\n  }\n}));\n```\n\n**Manual Headers:**\n```javascript\napp.use((req, res, next) => {\n  // Prevent clickjacking\n  res.setHeader('X-Frame-Options', 'DENY');\n  \n  // Prevent MIME sniffing\n  res.setHeader('X-Content-Type-Options', 'nosniff');\n  \n  // XSS Protection\n  res.setHeader('X-XSS-Protection', '1; mode=block');\n  \n  // Referrer Policy\n  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');\n  \n  next();\n});\n```",
+  "prompt": "A skill that configures HTTP security headers",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

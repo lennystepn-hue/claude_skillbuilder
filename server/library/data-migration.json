@@ -1,0 +1,10 @@
+{
+  "id": "premade-migration",
+  "name": "database-migration-generator",
+  "description": "Generate database migrations",
+  "category": "Data",
+  "content": "---\nname: database-migration-generator\ndescription: When the user needs database migrations\ncategory: Data\n---\n\n# Database Migration Generator\n\n## Overview\nGenerate database migrations for schema changes.\n\n## Activation\nActivates when user mentions \"migration\", \"alter table\", \"schema change\", or \"database update\".\n\n## Instructions\n\n1. Understand the schema change\n2. Generate up and down migrations\n3. Handle data migrations if needed\n4. Consider rollback safety\n\n## Examples\n\n**Input:** \"add email_verified column to users\"\n\n**Knex Migration:**\n```javascript\nexports.up = function(knex) {\n  return knex.schema.alterTable('users', (table) => {\n    table.boolean('email_verified').defaultTo(false);\n    table.timestamp('email_verified_at').nullable();\n  });\n};\n\nexports.down = function(knex) {\n  return knex.schema.alterTable('users', (table) => {\n    table.dropColumn('email_verified');\n    table.dropColumn('email_verified_at');\n  });\n};\n```\n\n**Prisma Migration:**\n```prisma\n// schema.prisma\nmodel User {\n  id             Int       @id @default(autoincrement())\n  email          String    @unique\n  emailVerified  Boolean   @default(false)\n  emailVerifiedAt DateTime?\n}\n```\n\n```bash\nnpx prisma migrate dev --name add_email_verified\n```\n\n**SQL Migration:**\n```sql\n-- up.sql\nALTER TABLE users\nADD COLUMN email_verified BOOLEAN DEFAULT FALSE,\nADD COLUMN email_verified_at TIMESTAMP;\n\n-- down.sql\nALTER TABLE users\nDROP COLUMN email_verified,\nDROP COLUMN email_verified_at;\n```",
+  "prompt": "A skill that generates database migrations",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

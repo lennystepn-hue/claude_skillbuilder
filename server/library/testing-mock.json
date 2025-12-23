@@ -1,0 +1,10 @@
+{
+  "id": "premade-mock-generator",
+  "name": "mock-generator",
+  "description": "Generate mocks and stubs for testing",
+  "category": "Testing",
+  "content": "---\nname: mock-generator\ndescription: When the user needs mocks or stubs for tests\ncategory: Testing\n---\n\n# Mock Generator\n\n## Overview\nGenerate mocks, stubs, and test doubles for isolated testing.\n\n## Activation\nActivates when user mentions \"mock\", \"stub\", \"spy\", or \"test double\".\n\n## Instructions\n\n1. Identify dependencies to mock\n2. Generate appropriate test doubles:\n   - Mocks: Verify interactions\n   - Stubs: Return canned responses\n   - Spies: Track calls while using real implementation\n\n3. Include reset/restore in tests\n\n## Examples\n\n**Input:** \"mock the user service\"\n\n**Output:**\n```javascript\n// __mocks__/userService.js\nconst mockUserService = {\n  getUser: jest.fn(),\n  createUser: jest.fn(),\n  updateUser: jest.fn(),\n  deleteUser: jest.fn(),\n};\n\n// Default implementations\nmockUserService.getUser.mockResolvedValue({\n  id: 1,\n  name: 'Test User',\n  email: 'test@example.com'\n});\n\nmockUserService.createUser.mockImplementation((data) => \n  Promise.resolve({ id: Date.now(), ...data })\n);\n\nexport default mockUserService;\n\n// Usage in tests\njest.mock('./userService');\nimport userService from './userService';\n\nbeforeEach(() => {\n  jest.clearAllMocks();\n});\n\ntest('fetches user', async () => {\n  userService.getUser.mockResolvedValueOnce({ id: 1, name: 'John' });\n  const user = await userService.getUser(1);\n  expect(userService.getUser).toHaveBeenCalledWith(1);\n});\n```",
+  "prompt": "A skill that generates mocks and stubs for testing",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

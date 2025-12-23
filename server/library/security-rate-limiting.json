@@ -1,0 +1,10 @@
+{
+  "id": "premade-rate-limiting",
+  "name": "rate-limiter",
+  "description": "Implement rate limiting for APIs",
+  "category": "Security",
+  "content": "---\nname: rate-limiter\ndescription: When the user needs to add rate limiting\ncategory: Security\n---\n\n# Rate Limiter\n\n## Overview\nImplement rate limiting to prevent abuse and DDoS attacks.\n\n## Activation\nActivates when user mentions \"rate limit\", \"throttle\", \"DDoS protection\", or \"API limits\".\n\n## Instructions\n\n1. Determine limits:\n   - Requests per minute/hour\n   - Per user vs per IP\n   - Different tiers for endpoints\n\n2. Implement with:\n   - express-rate-limit\n   - Redis for distributed systems\n   - Sliding window algorithm\n\n## Examples\n\n**Basic Rate Limiting:**\n```javascript\nimport rateLimit from 'express-rate-limit';\n\nconst limiter = rateLimit({\n  windowMs: 15 * 60 * 1000, // 15 minutes\n  max: 100, // 100 requests per window\n  message: { error: 'Too many requests, try again later' },\n  standardHeaders: true,\n  legacyHeaders: false,\n});\n\napp.use('/api', limiter);\n```\n\n**Tiered Limits:**\n```javascript\n// Strict for auth endpoints\nconst authLimiter = rateLimit({\n  windowMs: 60 * 60 * 1000, // 1 hour\n  max: 5, // 5 login attempts\n  skipSuccessfulRequests: true,\n});\n\napp.use('/api/auth/login', authLimiter);\n\n// Generous for reads\nconst readLimiter = rateLimit({\n  windowMs: 60 * 1000,\n  max: 100,\n});\n\napp.use('/api/products', readLimiter);\n```\n\n**Redis for Distributed:**\n```javascript\nimport RedisStore from 'rate-limit-redis';\nimport Redis from 'ioredis';\n\nconst limiter = rateLimit({\n  store: new RedisStore({\n    sendCommand: (...args) => redis.call(...args),\n  }),\n  windowMs: 60 * 1000,\n  max: 100,\n});\n```",
+  "prompt": "A skill that implements rate limiting",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

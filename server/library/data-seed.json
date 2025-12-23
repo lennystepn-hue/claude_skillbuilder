@@ -1,0 +1,10 @@
+{
+  "id": "premade-seed-data",
+  "name": "seed-data-generator",
+  "description": "Generate database seed data",
+  "category": "Data",
+  "content": "---\nname: seed-data-generator\ndescription: When the user needs seed data for development\ncategory: Data\n---\n\n# Seed Data Generator\n\n## Overview\nGenerate realistic seed data for development and testing.\n\n## Activation\nActivates when user mentions \"seed data\", \"sample data\", \"fake data\", or \"populate database\".\n\n## Instructions\n\n1. Analyze schema/models\n2. Generate realistic data using faker\n3. Maintain referential integrity\n4. Create various scenarios (edge cases)\n\n## Examples\n\n**Knex Seed:**\n```javascript\nconst { faker } = require('@faker-js/faker');\n\nexports.seed = async function(knex) {\n  // Clear existing data\n  await knex('posts').del();\n  await knex('users').del();\n\n  // Create users\n  const users = Array.from({ length: 50 }, () => ({\n    id: faker.string.uuid(),\n    email: faker.internet.email(),\n    name: faker.person.fullName(),\n    avatar: faker.image.avatar(),\n    created_at: faker.date.past({ years: 2 })\n  }));\n\n  await knex('users').insert(users);\n\n  // Create posts for each user\n  const posts = users.flatMap(user =>\n    Array.from({ length: faker.number.int({ min: 0, max: 10 }) }, () => ({\n      id: faker.string.uuid(),\n      user_id: user.id,\n      title: faker.lorem.sentence(),\n      content: faker.lorem.paragraphs(3),\n      published: faker.datatype.boolean(),\n      created_at: faker.date.between({\n        from: user.created_at,\n        to: new Date()\n      })\n    }))\n  );\n\n  await knex('posts').insert(posts);\n};\n```\n\n**Run:**\n```bash\nnpx knex seed:run\n```",
+  "prompt": "A skill that generates seed data",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

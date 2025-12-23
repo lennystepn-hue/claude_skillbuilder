@@ -1,0 +1,10 @@
+{
+  "id": "premade-sql-injection",
+  "name": "sql-injection-prevention",
+  "description": "Prevent SQL injection vulnerabilities",
+  "category": "Security",
+  "content": "---\nname: sql-injection-prevention\ndescription: When the user needs to prevent SQL injection\ncategory: Security\n---\n\n# SQL Injection Prevention\n\n## Overview\nIdentify and fix SQL injection vulnerabilities.\n\n## Activation\nActivates when user mentions \"SQL injection\", \"parameterized query\", or \"prepared statement\".\n\n## Instructions\n\n1. Identify vulnerable patterns:\n   - String concatenation in queries\n   - Template literals with user input\n   - Dynamic table/column names\n\n2. Fix with:\n   - Parameterized queries\n   - Prepared statements\n   - ORM methods\n   - Input validation\n\n## Examples\n\n**Vulnerable:**\n```javascript\nconst query = `SELECT * FROM users WHERE id = ${userId}`;\ndb.query(query);\n```\n\n**Fixed (Parameterized):**\n```javascript\n// MySQL\ndb.query('SELECT * FROM users WHERE id = ?', [userId]);\n\n// PostgreSQL\ndb.query('SELECT * FROM users WHERE id = $1', [userId]);\n\n// Knex.js\nknex('users').where('id', userId);\n\n// Prisma\nawait prisma.user.findUnique({ where: { id: userId } });\n```\n\n**Dynamic columns (whitelist):**\n```javascript\nconst allowedColumns = ['name', 'email', 'created_at'];\nconst sortBy = allowedColumns.includes(userInput) ? userInput : 'created_at';\nconst query = `SELECT * FROM users ORDER BY ${sortBy}`;\n```",
+  "prompt": "A skill that helps prevent SQL injection",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "premade-terraform",
+  "name": "terraform-generator",
+  "description": "Generate Terraform infrastructure code",
+  "category": "DevOps",
+  "content": "---\nname: terraform-generator\ndescription: When the user needs Terraform/IaC configurations\ncategory: DevOps\n---\n\n# Terraform Generator\n\n## Overview\nGenerate Terraform configurations for infrastructure as code.\n\n## Activation\nActivates when user mentions \"terraform\", \"infrastructure as code\", \"IaC\", or \"cloud resources\".\n\n## Instructions\n\n1. Determine cloud provider (AWS, GCP, Azure)\n2. Identify resources needed\n3. Generate with:\n   - Variables for flexibility\n   - Outputs for important values\n   - Proper resource naming\n   - Tags/labels\n\n## Examples\n\n**Input:** \"terraform for AWS EC2 with RDS\"\n\n**Output:**\n```hcl\n# variables.tf\nvariable \"environment\" {\n  default = \"production\"\n}\n\nvariable \"instance_type\" {\n  default = \"t3.micro\"\n}\n\n# main.tf\nprovider \"aws\" {\n  region = \"us-east-1\"\n}\n\nresource \"aws_instance\" \"app\" {\n  ami           = \"ami-0c55b159cbfafe1f0\"\n  instance_type = var.instance_type\n\n  vpc_security_group_ids = [aws_security_group.app.id]\n\n  tags = {\n    Name        = \"app-${var.environment}\"\n    Environment = var.environment\n  }\n}\n\nresource \"aws_db_instance\" \"main\" {\n  identifier        = \"myapp-${var.environment}\"\n  engine            = \"postgres\"\n  engine_version    = \"15\"\n  instance_class    = \"db.t3.micro\"\n  allocated_storage = 20\n\n  db_name  = \"myapp\"\n  username = \"admin\"\n  password = var.db_password\n\n  skip_final_snapshot = var.environment != \"production\"\n}\n\n# outputs.tf\noutput \"instance_ip\" {\n  value = aws_instance.app.public_ip\n}\n\noutput \"rds_endpoint\" {\n  value = aws_db_instance.main.endpoint\n}\n```",
+  "prompt": "A skill that generates Terraform configurations",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

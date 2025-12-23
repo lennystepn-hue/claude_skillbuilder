@@ -1,0 +1,10 @@
+{
+  "id": "premade-error-handler",
+  "name": "error-handler-generator",
+  "description": "Generate proper error handling code",
+  "category": "Dev",
+  "content": "---\nname: error-handler-generator\ndescription: When the user needs to add error handling\ncategory: Dev\n---\n\n# Error Handler Generator\n\n## Overview\nGenerate comprehensive error handling for your code.\n\n## Activation\nActivates when user mentions \"error handling\", \"try catch\", \"handle errors\", or \"exception handling\".\n\n## Instructions\n\n1. Identify error-prone operations:\n   - API calls\n   - File operations\n   - Database queries\n   - User input parsing\n\n2. Generate appropriate handlers:\n   - Try-catch blocks\n   - Error boundaries (React)\n   - Middleware (Express)\n   - Custom error classes\n\n3. Include:\n   - Specific error types\n   - User-friendly messages\n   - Logging\n   - Recovery strategies\n\n## Examples\n\n**Input:** \"add error handling to this API call\"\n\n**Output:**\n```javascript\ntry {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new ApiError(`HTTP ${response.status}`, response.status);\n  }\n  return await response.json();\n} catch (error) {\n  if (error instanceof ApiError) {\n    logger.error('API Error:', error);\n    throw error;\n  }\n  logger.error('Network Error:', error);\n  throw new NetworkError('Failed to connect');\n}\n```",
+  "prompt": "A skill that generates proper error handling for my code",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "premade-redis",
+  "name": "redis-caching",
+  "description": "Implement Redis caching strategies",
+  "category": "Data",
+  "content": "---\nname: redis-caching\ndescription: When the user needs Redis caching implementation\ncategory: Data\n---\n\n# Redis Caching\n\n## Overview\nImplement caching strategies with Redis.\n\n## Activation\nActivates when user mentions \"redis\", \"caching\", \"cache invalidation\", or \"session store\".\n\n## Instructions\n\n1. Choose caching strategy:\n   - Cache-aside\n   - Write-through\n   - Write-behind\n\n2. Implement with TTL and invalidation\n\n## Examples\n\n**Cache-Aside Pattern:**\n```javascript\nimport Redis from 'ioredis';\n\nconst redis = new Redis(process.env.REDIS_URL);\nconst CACHE_TTL = 3600; // 1 hour\n\nasync function getUser(userId) {\n  const cacheKey = `user:${userId}`;\n\n  // Try cache first\n  const cached = await redis.get(cacheKey);\n  if (cached) {\n    return JSON.parse(cached);\n  }\n\n  // Cache miss - fetch from DB\n  const user = await db.user.findUnique({ where: { id: userId } });\n\n  // Store in cache\n  if (user) {\n    await redis.setex(cacheKey, CACHE_TTL, JSON.stringify(user));\n  }\n\n  return user;\n}\n\n// Invalidate on update\nasync function updateUser(userId, data) {\n  const user = await db.user.update({ where: { id: userId }, data });\n  await redis.del(`user:${userId}`);\n  return user;\n}\n```\n\n**Session Store:**\n```javascript\nimport session from 'express-session';\nimport RedisStore from 'connect-redis';\n\napp.use(session({\n  store: new RedisStore({ client: redis }),\n  secret: process.env.SESSION_SECRET,\n  resave: false,\n  saveUninitialized: false,\n  cookie: { secure: true, maxAge: 86400000 }\n}));\n```",
+  "prompt": "A skill that implements Redis caching",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

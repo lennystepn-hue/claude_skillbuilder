@@ -1,0 +1,10 @@
+{
+  "id": "premade-kubernetes",
+  "name": "kubernetes-config",
+  "description": "Generate Kubernetes manifests and configurations",
+  "category": "DevOps",
+  "content": "---\nname: kubernetes-config\ndescription: When the user needs Kubernetes configurations\ncategory: DevOps\n---\n\n# Kubernetes Config Generator\n\n## Overview\nGenerate Kubernetes manifests for deployments, services, and more.\n\n## Activation\nActivates when user mentions \"kubernetes\", \"k8s\", \"deployment yaml\", or \"pod manifest\".\n\n## Instructions\n\n1. Determine requirements:\n   - Deployment, Service, ConfigMap, Secret?\n   - Replicas, resources, probes?\n   - Ingress, persistent storage?\n\n2. Generate with best practices:\n   - Resource limits\n   - Health checks\n   - Security contexts\n   - Labels and selectors\n\n## Examples\n\n**Input:** \"k8s deployment for my node app\"\n\n**Output:**\n```yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\n  labels:\n    app: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-app\n        image: my-app:latest\n        ports:\n        - containerPort: 3000\n        resources:\n          requests:\n            memory: \"128Mi\"\n            cpu: \"100m\"\n          limits:\n            memory: \"256Mi\"\n            cpu: \"500m\"\n        livenessProbe:\n          httpGet:\n            path: /health\n            port: 3000\n          initialDelaySeconds: 10\n        readinessProbe:\n          httpGet:\n            path: /ready\n            port: 3000\n        env:\n        - name: NODE_ENV\n          value: \"production\"\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-app\nspec:\n  selector:\n    app: my-app\n  ports:\n  - port: 80\n    targetPort: 3000\n  type: ClusterIP\n```",
+  "prompt": "A skill that generates Kubernetes manifests",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

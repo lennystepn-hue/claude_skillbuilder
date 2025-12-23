@@ -1,0 +1,10 @@
+{
+  "id": "premade-api-test",
+  "name": "api-test-writer",
+  "description": "Generate API endpoint tests with supertest",
+  "category": "Testing",
+  "content": "---\nname: api-test-writer\ndescription: When the user needs to test REST API endpoints\ncategory: Testing\n---\n\n# API Test Writer\n\n## Overview\nGenerate comprehensive API endpoint tests using supertest.\n\n## Activation\nActivates when user mentions \"test endpoint\", \"API test\", or \"REST test\".\n\n## Instructions\n\n1. For each endpoint test:\n   - Success cases (200, 201)\n   - Client errors (400, 401, 404)\n   - Validation errors\n   - Edge cases\n\n2. Include:\n   - Auth headers\n   - Request body validation\n   - Response structure validation\n\n## Examples\n\n**Input:** \"tests for POST /api/products\"\n\n**Output:**\n```javascript\nconst request = require('supertest');\nconst app = require('../app');\n\ndescribe('POST /api/products', () => {\n  let authToken;\n\n  beforeAll(async () => {\n    authToken = await getAuthToken();\n  });\n\n  it('creates product with valid data', async () => {\n    const res = await request(app)\n      .post('/api/products')\n      .set('Authorization', `Bearer ${authToken}`)\n      .send({ name: 'Widget', price: 29.99, stock: 100 })\n      .expect(201);\n\n    expect(res.body).toMatchObject({\n      id: expect.any(String),\n      name: 'Widget',\n      price: 29.99\n    });\n  });\n\n  it('returns 400 for missing required fields', async () => {\n    const res = await request(app)\n      .post('/api/products')\n      .set('Authorization', `Bearer ${authToken}`)\n      .send({ name: 'Widget' }) // missing price\n      .expect(400);\n\n    expect(res.body.error).toContain('price');\n  });\n\n  it('returns 401 without auth token', async () => {\n    await request(app)\n      .post('/api/products')\n      .send({ name: 'Widget', price: 29.99 })\n      .expect(401);\n  });\n});\n```",
+  "prompt": "A skill that generates API endpoint tests",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

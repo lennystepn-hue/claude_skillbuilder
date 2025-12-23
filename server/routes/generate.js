@@ -7,6 +7,9 @@ const path = require("path");
 
 const LIBRARY_PATH = path.join(__dirname, "../library");
 
+// Valid categories
+const VALID_CATEGORIES = ["Dev", "Docs", "Testing", "Security", "DevOps", "Data"];
+
 // Input sanitization
 function sanitizeInput(str) {
   if (typeof str !== "string") return "";
@@ -66,13 +69,17 @@ router.post("/", async (req, res) => {
       return res.status(500).json({ error: "Generated skill was invalid. Please try again." });
     }
 
-    // Parse name and description safely
+    // Parse name, description, and category safely
     const name = extractYamlField(skillContent, "name") || `skill-${nanoid(6)}`;
     const description = extractYamlField(skillContent, "description") || "";
+    const rawCategory = extractYamlField(skillContent, "category") || "Dev";
 
     // Sanitize extracted values
     const safeName = name.replace(/[^a-z0-9-]/gi, "-").toLowerCase().slice(0, 50);
     const safeDescription = description.slice(0, 200);
+
+    // Validate category - default to "Dev" if invalid
+    const safeCategory = VALID_CATEGORIES.includes(rawCategory) ? rawCategory : "Dev";
 
     const id = nanoid(10);
 
@@ -81,6 +88,7 @@ router.post("/", async (req, res) => {
       id,
       name: safeName,
       description: safeDescription,
+      category: safeCategory,
       content: skillContent,
       prompt: sanitizedPrompt,
       createdAt: new Date().toISOString(),

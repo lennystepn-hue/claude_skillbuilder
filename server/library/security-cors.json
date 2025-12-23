@@ -1,0 +1,10 @@
+{
+  "id": "premade-cors-security",
+  "name": "cors-configurator",
+  "description": "Configure CORS securely",
+  "category": "Security",
+  "content": "---\nname: cors-configurator\ndescription: When the user needs to configure CORS properly\ncategory: Security\n---\n\n# CORS Configurator\n\n## Overview\nConfigure Cross-Origin Resource Sharing securely.\n\n## Activation\nActivates when user mentions \"CORS\", \"cross-origin\", \"Access-Control-Allow\", or \"origin policy\".\n\n## Instructions\n\n1. Understand requirements:\n   - Which origins need access?\n   - What methods are needed?\n   - Are credentials required?\n\n2. Configure securely:\n   - Never use * with credentials\n   - Whitelist specific origins\n   - Limit exposed headers\n\n## Examples\n\n**Insecure (avoid):**\n```javascript\napp.use(cors()); // Allows all origins!\n```\n\n**Secure Configuration:**\n```javascript\nimport cors from 'cors';\n\nconst allowedOrigins = [\n  'https://myapp.com',\n  'https://admin.myapp.com',\n  process.env.NODE_ENV === 'development' && 'http://localhost:3000'\n].filter(Boolean);\n\napp.use(cors({\n  origin: (origin, callback) => {\n    // Allow requests with no origin (mobile apps, curl)\n    if (!origin) return callback(null, true);\n    \n    if (allowedOrigins.includes(origin)) {\n      callback(null, true);\n    } else {\n      callback(new Error('Not allowed by CORS'));\n    }\n  },\n  credentials: true,\n  methods: ['GET', 'POST', 'PUT', 'DELETE'],\n  allowedHeaders: ['Content-Type', 'Authorization'],\n  exposedHeaders: ['X-Total-Count'],\n  maxAge: 86400 // Preflight cache 24h\n}));\n```",
+  "prompt": "A skill that configures CORS securely",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

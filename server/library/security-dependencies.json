@@ -1,0 +1,10 @@
+{
+  "id": "premade-dep-security",
+  "name": "dependency-scanner",
+  "description": "Scan dependencies for vulnerabilities",
+  "category": "Security",
+  "content": "---\nname: dependency-scanner\ndescription: When the user needs to check dependencies for vulnerabilities\ncategory: Security\n---\n\n# Dependency Scanner\n\n## Overview\nScan and fix vulnerable dependencies.\n\n## Activation\nActivates when user mentions \"npm audit\", \"vulnerable dependencies\", \"outdated packages\", or \"CVE\".\n\n## Instructions\n\n1. Run security audits:\n   - npm audit / yarn audit\n   - Check CVE databases\n   - Review security advisories\n\n2. Provide fix strategies:\n   - Direct updates\n   - Override resolutions\n   - Alternative packages\n\n## Examples\n\n**Run Audit:**\n```bash\n# npm\nnpm audit\nnpm audit fix\nnpm audit fix --force  # Breaking changes OK\n\n# yarn\nyarn audit\nyarn upgrade-interactive\n```\n\n**Fix with Resolutions (package.json):**\n```json\n{\n  \"resolutions\": {\n    \"lodash\": \"^4.17.21\",\n    \"**/minimist\": \"^1.2.6\"\n  }\n}\n```\n\n**Check Specific Package:**\n```bash\nnpm audit --audit-level=high\nnpm ls lodash  # Check where it's used\n```\n\n**CI Integration:**\n```yaml\n# GitHub Actions\n- name: Security Audit\n  run: npm audit --audit-level=high\n  continue-on-error: false\n```\n\n**Alternative: Snyk:**\n```bash\nnpx snyk test\nnpx snyk monitor  # Continuous monitoring\n```",
+  "prompt": "A skill that scans dependencies for vulnerabilities",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

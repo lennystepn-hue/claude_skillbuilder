@@ -1,0 +1,10 @@
+{
+  "id": "premade-contributing",
+  "name": "contributing-guide",
+  "description": "Generate CONTRIBUTING.md for open source projects",
+  "category": "Docs",
+  "content": "---\nname: contributing-guide\ndescription: When the user wants to create contribution guidelines\ncategory: Docs\n---\n\n# Contributing Guide Generator\n\n## Overview\nGenerate comprehensive CONTRIBUTING.md files for open source projects.\n\n## Activation\nActivates when user mentions \"contributing guide\", \"contribution guidelines\", or \"how to contribute\".\n\n## Instructions\n\n1. Analyze project structure and tooling\n2. Include sections:\n   - Code of Conduct\n   - Getting Started\n   - Development Setup\n   - Pull Request Process\n   - Coding Standards\n   - Testing Requirements\n   - Issue Reporting\n\n## Examples\n\n**Output:**\n```markdown\n# Contributing to ProjectName\n\n## Code of Conduct\nBe respectful and inclusive.\n\n## Getting Started\n1. Fork the repository\n2. Clone your fork\n3. Create a branch: `git checkout -b feature/amazing-feature`\n\n## Development Setup\n```bash\nnpm install\nnpm run dev\n```\n\n## Pull Request Process\n1. Update documentation if needed\n2. Add tests for new features\n3. Ensure all tests pass\n4. Request review from maintainers\n\n## Commit Messages\nFollow conventional commits: `feat:`, `fix:`, `docs:`, etc.\n```",
+  "prompt": "A skill that generates CONTRIBUTING.md for projects",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

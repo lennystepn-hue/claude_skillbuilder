@@ -1,0 +1,10 @@
+{
+  "id": "premade-regex",
+  "name": "regex-builder",
+  "description": "Build and explain regular expressions",
+  "category": "Dev",
+  "content": "---\nname: regex-builder\ndescription: When the user needs help with regular expressions\ncategory: Dev\n---\n\n# Regex Builder\n\n## Overview\nCreate, explain, and test regular expressions.\n\n## Activation\nActivates when user mentions \"regex\", \"regular expression\", or \"pattern matching\".\n\n## Instructions\n\n1. Understand the matching requirement\n2. Build the regex step by step\n3. Explain each part of the pattern\n4. Provide test cases\n5. Show usage in different languages (JS, Python, etc.)\n\n## Examples\n\n**Input:** \"regex for email validation\"\n\n**Output:**\n```regex\n^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n```\n\n**Explanation:**\n- `^` - Start of string\n- `[a-zA-Z0-9._%+-]+` - Username (letters, numbers, dots, etc.)\n- `@` - Literal @ symbol\n- `[a-zA-Z0-9.-]+` - Domain name\n- `\\.` - Literal dot\n- `[a-zA-Z]{2,}$` - TLD (2+ letters)",
+  "prompt": "A skill that helps me build and understand regular expressions",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

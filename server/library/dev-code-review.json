@@ -1,0 +1,10 @@
+{
+  "id": "premade-code-review",
+  "name": "code-reviewer",
+  "description": "Review code for best practices and improvements",
+  "category": "Dev",
+  "content": "---\nname: code-reviewer\ndescription: When the user wants code review or feedback\ncategory: Dev\n---\n\n# Code Reviewer\n\n## Overview\nProvide thorough code reviews with actionable feedback.\n\n## Activation\nActivates when user says \"review this\", \"code review\", or \"feedback on my code\".\n\n## Instructions\n\n1. Analyze code for:\n   - Logic errors and bugs\n   - Performance issues\n   - Security vulnerabilities\n   - Code style and readability\n   - Best practices violations\n\n2. Provide feedback in categories:\n   - 🔴 Critical: Must fix\n   - 🟡 Warning: Should fix\n   - 🟢 Suggestion: Nice to have\n\n3. Include specific line references and improved code examples.\n\n## Examples\n\n**Input:** \"review this function\"\n\n**Output:**\n```\n🔴 Critical (Line 5): SQL injection vulnerability\n🟡 Warning (Line 12): Missing error handling\n🟢 Suggestion (Line 3): Consider using const instead of let\n```",
+  "prompt": "A skill that reviews my code and provides actionable feedback",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

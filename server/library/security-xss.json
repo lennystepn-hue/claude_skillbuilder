@@ -1,0 +1,10 @@
+{
+  "id": "premade-xss-prevention",
+  "name": "xss-prevention",
+  "description": "Prevent XSS vulnerabilities in code",
+  "category": "Security",
+  "content": "---\nname: xss-prevention\ndescription: When the user needs to prevent XSS attacks\ncategory: Security\n---\n\n# XSS Prevention\n\n## Overview\nIdentify and fix Cross-Site Scripting vulnerabilities.\n\n## Activation\nActivates when user mentions \"XSS\", \"cross-site scripting\", or \"sanitize input\".\n\n## Instructions\n\n1. Identify XSS vectors:\n   - innerHTML usage\n   - dangerouslySetInnerHTML\n   - URL parameters in DOM\n   - Eval and Function constructors\n\n2. Apply fixes:\n   - Use textContent instead of innerHTML\n   - Sanitize with DOMPurify\n   - Escape output\n   - Use CSP headers\n\n## Examples\n\n**Vulnerable:**\n```javascript\nelement.innerHTML = userInput;\n```\n\n**Fixed:**\n```javascript\nimport DOMPurify from 'dompurify';\n\n// Option 1: Sanitize HTML\nelement.innerHTML = DOMPurify.sanitize(userInput);\n\n// Option 2: Use textContent (no HTML)\nelement.textContent = userInput;\n\n// React: Avoid dangerouslySetInnerHTML\n// Instead of:\n<div dangerouslySetInnerHTML={{__html: userContent}} />\n\n// Use sanitized:\n<div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(userContent)}} />\n```\n\n**CSP Header:**\n```javascript\napp.use((req, res, next) => {\n  res.setHeader(\n    'Content-Security-Policy',\n    \"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'\"\n  );\n  next();\n});\n```",
+  "prompt": "A skill that helps prevent XSS vulnerabilities",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

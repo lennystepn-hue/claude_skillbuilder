@@ -1,0 +1,10 @@
+{
+  "id": "premade-ssl",
+  "name": "ssl-certificate-manager",
+  "description": "Set up and manage SSL/TLS certificates",
+  "category": "DevOps",
+  "content": "---\nname: ssl-certificate-manager\ndescription: When the user needs SSL/TLS certificates\ncategory: DevOps\n---\n\n# SSL Certificate Manager\n\n## Overview\nSet up and manage SSL/TLS certificates with Let's Encrypt.\n\n## Activation\nActivates when user mentions \"SSL\", \"HTTPS\", \"certificate\", \"TLS\", or \"Let's Encrypt\".\n\n## Instructions\n\n1. Choose method:\n   - Certbot (standalone)\n   - DNS challenge (wildcard)\n   - Traefik (automatic)\n\n2. Set up auto-renewal\n\n## Examples\n\n**Certbot with Nginx:**\n```bash\n# Install certbot\nsudo apt install certbot python3-certbot-nginx\n\n# Get certificate\nsudo certbot --nginx -d example.com -d www.example.com\n\n# Auto-renewal (already set up by certbot)\nsudo systemctl status certbot.timer\n\n# Test renewal\nsudo certbot renew --dry-run\n```\n\n**Wildcard with DNS Challenge:**\n```bash\nsudo certbot certonly \\\n  --dns-cloudflare \\\n  --dns-cloudflare-credentials ~/.secrets/cloudflare.ini \\\n  -d example.com \\\n  -d *.example.com\n```\n\n**Docker with Traefik:**\n```yaml\nservices:\n  traefik:\n    image: traefik:v2.10\n    command:\n      - --certificatesresolvers.letsencrypt.acme.tlschallenge=true\n      - --certificatesresolvers.letsencrypt.acme.email=admin@example.com\n      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json\n    ports:\n      - \"443:443\"\n    volumes:\n      - letsencrypt:/letsencrypt\n\n  app:\n    labels:\n      - traefik.http.routers.app.tls.certresolver=letsencrypt\n      - traefik.http.routers.app.rule=Host(`example.com`)\n```",
+  "prompt": "A skill that manages SSL certificates",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

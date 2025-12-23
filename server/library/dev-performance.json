@@ -1,0 +1,10 @@
+{
+  "id": "premade-performance",
+  "name": "performance-optimizer",
+  "description": "Optimize code for better performance",
+  "category": "Dev",
+  "content": "---\nname: performance-optimizer\ndescription: When the user wants to improve code performance\ncategory: Dev\n---\n\n# Performance Optimizer\n\n## Overview\nIdentify and fix performance bottlenecks in your code.\n\n## Activation\nActivates when user mentions \"slow\", \"performance\", \"optimize\", \"speed up\", or \"bottleneck\".\n\n## Instructions\n\n1. Identify performance issues:\n   - Unnecessary re-renders (React)\n   - N+1 queries (databases)\n   - Memory leaks\n   - Blocking operations\n   - Inefficient algorithms\n\n2. Suggest optimizations:\n   - Memoization\n   - Lazy loading\n   - Caching\n   - Debouncing/throttling\n   - Algorithm improvements\n\n3. Provide before/after with impact estimates\n\n## Examples\n\n**Input:** \"this loop is slow\"\n```javascript\nconst result = [];\nfor (const item of items) {\n  if (users.find(u => u.id === item.userId)) {\n    result.push(item);\n  }\n}\n```\n\n**Output:**\n```javascript\n// O(n*m) → O(n+m) using Set lookup\nconst userIds = new Set(users.map(u => u.id));\nconst result = items.filter(item => userIds.has(item.userId));\n```\n\n**Impact:** ~100x faster for large arrays",
+  "prompt": "A skill that optimizes my code for better performance",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

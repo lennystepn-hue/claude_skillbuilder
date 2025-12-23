@@ -1,0 +1,10 @@
+{
+  "id": "premade-perf-test",
+  "name": "performance-test-writer",
+  "description": "Generate performance and load tests",
+  "category": "Testing",
+  "content": "---\nname: performance-test-writer\ndescription: When the user needs performance or load tests\ncategory: Testing\n---\n\n# Performance Test Writer\n\n## Overview\nGenerate performance benchmarks and load tests.\n\n## Activation\nActivates when user mentions \"performance test\", \"load test\", \"benchmark\", or \"stress test\".\n\n## Instructions\n\n1. Identify what to measure:\n   - Response time\n   - Throughput\n   - Memory usage\n   - Concurrent users\n\n2. Generate tests using:\n   - k6 for load testing\n   - Benchmark.js for micro-benchmarks\n   - Artillery for API load testing\n\n## Examples\n\n**Input:** \"load test for the API\"\n\n**Output (k6):**\n```javascript\nimport http from 'k6/http';\nimport { check, sleep } from 'k6';\n\nexport const options = {\n  stages: [\n    { duration: '30s', target: 20 },   // Ramp up to 20 users\n    { duration: '1m', target: 20 },    // Stay at 20 users\n    { duration: '30s', target: 50 },   // Ramp up to 50 users\n    { duration: '1m', target: 50 },    // Stay at 50 users\n    { duration: '30s', target: 0 },    // Ramp down\n  ],\n  thresholds: {\n    http_req_duration: ['p(95)<500'], // 95% under 500ms\n    http_req_failed: ['rate<0.01'],   // <1% errors\n  },\n};\n\nexport default function () {\n  const res = http.get('http://localhost:3000/api/products');\n  \n  check(res, {\n    'status is 200': (r) => r.status === 200,\n    'response time < 200ms': (r) => r.timings.duration < 200,\n  });\n  \n  sleep(1);\n}\n```\n\n**Run:** `k6 run loadtest.js`",
+  "prompt": "A skill that generates performance and load tests",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

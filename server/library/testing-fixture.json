@@ -1,0 +1,10 @@
+{
+  "id": "premade-test-fixtures",
+  "name": "test-fixture-generator",
+  "description": "Generate test fixtures and factory functions",
+  "category": "Testing",
+  "content": "---\nname: test-fixture-generator\ndescription: When the user needs test data or fixtures\ncategory: Testing\n---\n\n# Test Fixture Generator\n\n## Overview\nGenerate test fixtures, factories, and seed data for testing.\n\n## Activation\nActivates when user mentions \"fixture\", \"test data\", \"factory\", or \"seed data\".\n\n## Instructions\n\n1. Analyze data models/schemas\n2. Generate:\n   - Factory functions with defaults\n   - Realistic fake data\n   - Related data (foreign keys)\n   - Edge case data\n\n3. Use faker.js for realistic data\n\n## Examples\n\n**Input:** \"fixtures for user and posts\"\n\n**Output:**\n```javascript\nimport { faker } from '@faker-js/faker';\n\n// Base factory\nexport const createUser = (overrides = {}) => ({\n  id: faker.string.uuid(),\n  email: faker.internet.email(),\n  name: faker.person.fullName(),\n  avatar: faker.image.avatar(),\n  createdAt: faker.date.past(),\n  ...overrides,\n});\n\nexport const createPost = (overrides = {}) => ({\n  id: faker.string.uuid(),\n  title: faker.lorem.sentence(),\n  content: faker.lorem.paragraphs(3),\n  authorId: overrides.authorId || createUser().id,\n  publishedAt: faker.date.recent(),\n  tags: faker.helpers.arrayElements(['tech', 'news', 'tutorial'], 2),\n  ...overrides,\n});\n\n// Batch creation\nexport const createUsers = (count = 5) => \n  Array.from({ length: count }, () => createUser());\n\n// With relationships\nexport const createUserWithPosts = (postCount = 3) => {\n  const user = createUser();\n  const posts = Array.from({ length: postCount }, () => \n    createPost({ authorId: user.id })\n  );\n  return { user, posts };\n};\n```",
+  "prompt": "A skill that generates test fixtures and factories",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

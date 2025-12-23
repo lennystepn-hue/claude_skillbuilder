@@ -1,0 +1,10 @@
+{
+  "id": "premade-usage-examples",
+  "name": "usage-example-generator",
+  "description": "Generate usage examples for libraries and APIs",
+  "category": "Docs",
+  "content": "---\nname: usage-example-generator\ndescription: When the user needs code examples for documentation\ncategory: Docs\n---\n\n# Usage Example Generator\n\n## Overview\nGenerate clear, practical usage examples for code documentation.\n\n## Activation\nActivates when user mentions \"usage examples\", \"code samples\", or \"show how to use\".\n\n## Instructions\n\n1. Analyze the function/class/API\n2. Create examples showing:\n   - Basic usage\n   - Common use cases\n   - Edge cases\n   - Error handling\n   - Advanced patterns\n\n3. Make examples:\n   - Self-contained (copy-paste ready)\n   - Realistic (real-world scenarios)\n   - Progressive (simple → complex)\n\n## Examples\n\n**Input:** \"examples for this fetch wrapper\"\n\n**Output:**\n```javascript\n// Basic GET request\nconst users = await api.get('/users');\n\n// GET with query parameters\nconst filtered = await api.get('/users', {\n  params: { role: 'admin', active: true }\n});\n\n// POST with body\nconst newUser = await api.post('/users', {\n  body: { name: 'John', email: 'john@example.com' }\n});\n\n// With error handling\ntry {\n  const data = await api.get('/users/123');\n} catch (error) {\n  if (error.status === 404) {\n    console.log('User not found');\n  }\n}\n```",
+  "prompt": "A skill that generates usage examples for documentation",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

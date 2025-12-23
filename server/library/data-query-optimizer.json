@@ -1,0 +1,10 @@
+{
+  "id": "premade-query-optimizer",
+  "name": "query-optimizer",
+  "description": "Optimize slow database queries",
+  "category": "Data",
+  "content": "---\nname: query-optimizer\ndescription: When the user needs to optimize database queries\ncategory: Data\n---\n\n# Query Optimizer\n\n## Overview\nAnalyze and optimize slow database queries.\n\n## Activation\nActivates when user mentions \"slow query\", \"query optimization\", \"EXPLAIN\", or \"index\".\n\n## Instructions\n\n1. Analyze the query with EXPLAIN\n2. Identify issues:\n   - Missing indexes\n   - N+1 queries\n   - Full table scans\n   - Inefficient JOINs\n\n3. Suggest optimizations:\n   - Add indexes\n   - Rewrite query\n   - Use query caching\n\n## Examples\n\n**Analyze with EXPLAIN:**\n```sql\nEXPLAIN ANALYZE\nSELECT * FROM orders\nWHERE user_id = 123\nAND created_at > '2024-01-01';\n```\n\n**Add Composite Index:**\n```sql\n-- Before: Seq Scan on orders (cost=0.00..15000.00)\n-- After: Index Scan (cost=0.00..8.00)\n\nCREATE INDEX idx_orders_user_created\nON orders (user_id, created_at DESC);\n```\n\n**Fix N+1 Query:**\n```javascript\n// Bad: N+1 queries\nconst users = await User.findAll();\nfor (const user of users) {\n  user.posts = await Post.findAll({ where: { userId: user.id } });\n}\n\n// Good: Single query with JOIN\nconst users = await User.findAll({\n  include: [{ model: Post }]\n});\n```\n\n**Pagination Optimization:**\n```sql\n-- Bad: OFFSET for deep pages\nSELECT * FROM posts ORDER BY id LIMIT 20 OFFSET 10000;\n\n-- Good: Cursor-based\nSELECT * FROM posts WHERE id > 10000 ORDER BY id LIMIT 20;\n```",
+  "prompt": "A skill that optimizes database queries",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

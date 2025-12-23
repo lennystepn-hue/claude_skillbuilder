@@ -1,0 +1,10 @@
+{
+  "id": "premade-graphql",
+  "name": "graphql-schema-generator",
+  "description": "Generate GraphQL schemas and resolvers",
+  "category": "Data",
+  "content": "---\nname: graphql-schema-generator\ndescription: When the user needs GraphQL schema design\ncategory: Data\n---\n\n# GraphQL Schema Generator\n\n## Overview\nGenerate GraphQL schemas, types, and resolvers.\n\n## Activation\nActivates when user mentions \"graphql\", \"schema.graphql\", \"resolver\", or \"mutation\".\n\n## Instructions\n\n1. Design schema with:\n   - Types and inputs\n   - Queries and mutations\n   - Subscriptions\n   - Custom scalars\n\n2. Generate resolvers\n\n## Examples\n\n**Schema:**\n```graphql\ntype User {\n  id: ID!\n  email: String!\n  name: String\n  posts: [Post!]!\n  createdAt: DateTime!\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  content: String!\n  author: User!\n  published: Boolean!\n  createdAt: DateTime!\n}\n\ninput CreatePostInput {\n  title: String!\n  content: String!\n  published: Boolean = false\n}\n\ntype Query {\n  user(id: ID!): User\n  users(limit: Int = 10, offset: Int = 0): [User!]!\n  post(id: ID!): Post\n  posts(published: Boolean): [Post!]!\n}\n\ntype Mutation {\n  createPost(input: CreatePostInput!): Post!\n  updatePost(id: ID!, input: CreatePostInput!): Post!\n  deletePost(id: ID!): Boolean!\n}\n```\n\n**Resolvers:**\n```javascript\nconst resolvers = {\n  Query: {\n    user: (_, { id }) => db.user.findUnique({ where: { id } }),\n    posts: (_, { published }) => \n      db.post.findMany({ where: published != null ? { published } : {} })\n  },\n  Mutation: {\n    createPost: (_, { input }, ctx) => \n      db.post.create({ data: { ...input, authorId: ctx.userId } })\n  },\n  User: {\n    posts: (user) => db.post.findMany({ where: { authorId: user.id } })\n  }\n};\n```",
+  "prompt": "A skill that generates GraphQL schemas",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

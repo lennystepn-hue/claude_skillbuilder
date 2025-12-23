@@ -1,0 +1,10 @@
+{
+  "id": "premade-env-management",
+  "name": "environment-manager",
+  "description": "Manage environment configurations across stages",
+  "category": "DevOps",
+  "content": "---\nname: environment-manager\ndescription: When the user needs to manage different environments\ncategory: DevOps\n---\n\n# Environment Manager\n\n## Overview\nManage configurations across dev, staging, and production environments.\n\n## Activation\nActivates when user mentions \"environment config\", \"staging\", \"production config\", or \"env management\".\n\n## Instructions\n\n1. Set up environment structure:\n   - Development\n   - Staging\n   - Production\n\n2. Manage:\n   - Environment variables\n   - Feature flags\n   - Secrets (encrypted)\n\n## Examples\n\n**Config Structure:**\n```\nconfig/\n├── default.js       # Shared defaults\n├── development.js   # Dev overrides\n├── staging.js       # Staging overrides\n└── production.js    # Production overrides\n```\n\n**Using node-config:**\n```javascript\n// config/default.js\nmodule.exports = {\n  server: {\n    port: 3000,\n    host: 'localhost'\n  },\n  database: {\n    pool: { min: 2, max: 10 }\n  },\n  features: {\n    newCheckout: false\n  }\n};\n\n// config/production.js\nmodule.exports = {\n  server: {\n    host: '0.0.0.0'\n  },\n  database: {\n    pool: { min: 10, max: 50 }\n  },\n  features: {\n    newCheckout: true\n  }\n};\n\n// Usage\nimport config from 'config';\nconst port = config.get('server.port');\n```\n\n**Environment-specific Docker Compose:**\n```bash\n# Development\ndocker-compose -f docker-compose.yml -f docker-compose.dev.yml up\n\n# Production\ndocker-compose -f docker-compose.yml -f docker-compose.prod.yml up\n```",
+  "prompt": "A skill that manages environment configurations",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

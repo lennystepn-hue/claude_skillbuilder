@@ -1,0 +1,10 @@
+{
+  "id": "premade-auth-security",
+  "name": "auth-security-checker",
+  "description": "Review authentication and authorization security",
+  "category": "Security",
+  "content": "---\nname: auth-security-checker\ndescription: When the user needs to secure authentication\ncategory: Security\n---\n\n# Auth Security Checker\n\n## Overview\nReview and secure authentication and authorization implementations.\n\n## Activation\nActivates when user mentions \"auth security\", \"password security\", \"JWT security\", or \"session security\".\n\n## Instructions\n\n1. Check authentication:\n   - Password hashing (bcrypt, argon2)\n   - Secure session management\n   - JWT best practices\n   - MFA implementation\n\n2. Check authorization:\n   - Role-based access control\n   - Resource ownership checks\n   - API endpoint protection\n\n## Examples\n\n**Password Hashing:**\n```javascript\nimport bcrypt from 'bcrypt';\n\n// Hash password\nconst hash = await bcrypt.hash(password, 12);\n\n// Verify\nconst valid = await bcrypt.compare(password, hash);\n```\n\n**JWT Best Practices:**\n```javascript\n// DO: Short expiry, httpOnly cookies\nconst token = jwt.sign({ userId }, SECRET, { expiresIn: '15m' });\n\nres.cookie('token', token, {\n  httpOnly: true,\n  secure: true,\n  sameSite: 'strict',\n  maxAge: 15 * 60 * 1000\n});\n\n// DON'T: Long expiry, localStorage\nlocalStorage.setItem('token', token); // XSS vulnerable!\n```\n\n**Authorization Middleware:**\n```javascript\nconst requireOwnership = async (req, res, next) => {\n  const resource = await Resource.findById(req.params.id);\n  if (resource.userId !== req.user.id) {\n    return res.status(403).json({ error: 'Forbidden' });\n  }\n  next();\n};\n```",
+  "prompt": "A skill that reviews authentication security",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

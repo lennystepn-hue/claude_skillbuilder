@@ -1,0 +1,10 @@
+{
+  "id": "premade-e2e-test",
+  "name": "e2e-test-writer",
+  "description": "Generate end-to-end tests with Playwright or Cypress",
+  "category": "Testing",
+  "content": "---\nname: e2e-test-writer\ndescription: When the user needs browser/E2E tests\ncategory: Testing\n---\n\n# E2E Test Writer\n\n## Overview\nGenerate end-to-end tests using Playwright or Cypress.\n\n## Activation\nActivates when user mentions \"e2e\", \"playwright\", \"cypress\", or \"browser test\".\n\n## Instructions\n\n1. Identify user flows to test\n2. Generate tests with:\n   - Page navigation\n   - Form interactions\n   - Assertions on UI state\n   - Screenshot/video on failure\n\n3. Follow best practices:\n   - Use data-testid selectors\n   - Avoid flaky selectors\n   - Add proper waits\n\n## Examples\n\n**Input:** \"e2e test for login flow\"\n\n**Output (Playwright):**\n```typescript\nimport { test, expect } from '@playwright/test';\n\ntest.describe('Login Flow', () => {\n  test('successful login redirects to dashboard', async ({ page }) => {\n    await page.goto('/login');\n\n    await page.fill('[data-testid=\"email-input\"]', 'user@example.com');\n    await page.fill('[data-testid=\"password-input\"]', 'password123');\n    await page.click('[data-testid=\"login-button\"]');\n\n    await expect(page).toHaveURL('/dashboard');\n    await expect(page.locator('[data-testid=\"welcome-message\"]'))\n      .toContainText('Welcome');\n  });\n\n  test('shows error on invalid credentials', async ({ page }) => {\n    await page.goto('/login');\n    await page.fill('[data-testid=\"email-input\"]', 'wrong@example.com');\n    await page.fill('[data-testid=\"password-input\"]', 'wrongpass');\n    await page.click('[data-testid=\"login-button\"]');\n\n    await expect(page.locator('[data-testid=\"error-message\"]'))\n      .toBeVisible();\n  });\n});\n```",
+  "prompt": "A skill that generates E2E tests with Playwright or Cypress",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "premade-jsdoc",
+  "name": "jsdoc-generator",
+  "description": "Generate JSDoc comments for JavaScript/TypeScript",
+  "category": "Docs",
+  "content": "---\nname: jsdoc-generator\ndescription: When the user wants to add documentation comments\ncategory: Docs\n---\n\n# JSDoc Generator\n\n## Overview\nGenerate comprehensive JSDoc comments for functions, classes, and modules.\n\n## Activation\nActivates when user mentions \"jsdoc\", \"document function\", \"add comments\", or \"docstring\".\n\n## Instructions\n\n1. Analyze the code structure\n2. Generate JSDoc with:\n   - @description - What it does\n   - @param - Parameters with types\n   - @returns - Return value\n   - @throws - Possible errors\n   - @example - Usage examples\n\n## Examples\n\n**Input:**\n```javascript\nfunction calculateDiscount(price, percentage, maxDiscount) {\n  const discount = price * (percentage / 100);\n  return Math.min(discount, maxDiscount);\n}\n```\n\n**Output:**\n```javascript\n/**\n * Calculates discount amount with a maximum cap.\n * @param {number} price - Original price\n * @param {number} percentage - Discount percentage (0-100)\n * @param {number} maxDiscount - Maximum discount allowed\n * @returns {number} The calculated discount, capped at maxDiscount\n * @example\n * calculateDiscount(100, 20, 15) // returns 15 (capped)\n * calculateDiscount(100, 10, 15) // returns 10\n */\n```",
+  "prompt": "A skill that generates JSDoc comments for my code",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

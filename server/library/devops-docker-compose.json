@@ -1,0 +1,10 @@
+{
+  "id": "premade-docker-compose",
+  "name": "docker-compose-generator",
+  "description": "Generate docker-compose.yml files",
+  "category": "DevOps",
+  "content": "---\nname: docker-compose-generator\ndescription: When the user needs docker-compose configuration\ncategory: DevOps\n---\n\n# Docker Compose Generator\n\n## Overview\nGenerate docker-compose.yml for multi-container applications.\n\n## Activation\nActivates when user mentions \"docker-compose\", \"multi-container\", or \"compose file\".\n\n## Instructions\n\n1. Identify services needed:\n   - Application containers\n   - Databases\n   - Cache (Redis)\n   - Message queues\n\n2. Configure:\n   - Networks\n   - Volumes\n   - Environment variables\n   - Health checks\n   - Dependencies\n\n## Examples\n\n**Input:** \"docker-compose for node app with postgres and redis\"\n\n**Output:**\n```yaml\nversion: '3.8'\n\nservices:\n  app:\n    build: .\n    ports:\n      - \"3000:3000\"\n    environment:\n      - NODE_ENV=production\n      - DATABASE_URL=postgresql://user:pass@db:5432/myapp\n      - REDIS_URL=redis://cache:6379\n    depends_on:\n      db:\n        condition: service_healthy\n      cache:\n        condition: service_started\n    restart: unless-stopped\n\n  db:\n    image: postgres:15-alpine\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n    environment:\n      - POSTGRES_USER=user\n      - POSTGRES_PASSWORD=pass\n      - POSTGRES_DB=myapp\n    healthcheck:\n      test: [\"CMD-SHELL\", \"pg_isready -U user -d myapp\"]\n      interval: 5s\n      timeout: 5s\n      retries: 5\n\n  cache:\n    image: redis:7-alpine\n    volumes:\n      - redis_data:/data\n    command: redis-server --appendonly yes\n\nvolumes:\n  postgres_data:\n  redis_data:\n\nnetworks:\n  default:\n    name: myapp-network\n```",
+  "prompt": "A skill that generates docker-compose files",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

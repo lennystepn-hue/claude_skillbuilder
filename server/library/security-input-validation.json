@@ -1,0 +1,10 @@
+{
+  "id": "premade-input-validation",
+  "name": "input-validator",
+  "description": "Validate and sanitize user input",
+  "category": "Security",
+  "content": "---\nname: input-validator\ndescription: When the user needs input validation\ncategory: Security\n---\n\n# Input Validator\n\n## Overview\nValidate and sanitize all user input to prevent attacks.\n\n## Activation\nActivates when user mentions \"validate input\", \"sanitize\", \"form validation\", or \"zod schema\".\n\n## Instructions\n\n1. Validate:\n   - Type checking\n   - Format validation (email, URL)\n   - Length limits\n   - Allowed values\n\n2. Sanitize:\n   - Trim whitespace\n   - Remove/escape dangerous characters\n   - Normalize data\n\n## Examples\n\n**Zod Schema:**\n```javascript\nimport { z } from 'zod';\n\nconst userSchema = z.object({\n  email: z.string().email().toLowerCase(),\n  name: z.string().min(2).max(50).trim(),\n  age: z.number().int().min(13).max(120).optional(),\n  role: z.enum(['user', 'admin']).default('user'),\n  website: z.string().url().optional(),\n});\n\n// Usage\napp.post('/users', (req, res) => {\n  const result = userSchema.safeParse(req.body);\n  \n  if (!result.success) {\n    return res.status(400).json({\n      error: 'Validation failed',\n      details: result.error.flatten()\n    });\n  }\n  \n  const validData = result.data;\n  // Safe to use\n});\n```\n\n**Express Validator:**\n```javascript\nimport { body, validationResult } from 'express-validator';\n\napp.post('/users',\n  body('email').isEmail().normalizeEmail(),\n  body('password').isLength({ min: 8 }).matches(/[A-Z]/).matches(/[0-9]/),\n  body('name').trim().escape(),\n  (req, res) => {\n    const errors = validationResult(req);\n    if (!errors.isEmpty()) {\n      return res.status(400).json({ errors: errors.array() });\n    }\n  }\n);\n```",
+  "prompt": "A skill that validates and sanitizes input",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

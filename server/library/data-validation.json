@@ -1,0 +1,10 @@
+{
+  "id": "premade-data-validation",
+  "name": "data-validation-schema",
+  "description": "Create data validation schemas",
+  "category": "Data",
+  "content": "---\nname: data-validation-schema\ndescription: When the user needs data validation\ncategory: Data\n---\n\n# Data Validation Schema\n\n## Overview\nCreate comprehensive data validation schemas with Zod or Joi.\n\n## Activation\nActivates when user mentions \"validate data\", \"zod schema\", \"joi\", or \"type validation\".\n\n## Instructions\n\n1. Analyze data structure\n2. Add validations:\n   - Type checking\n   - Format validation\n   - Custom rules\n   - Error messages\n\n## Examples\n\n**Zod Schema:**\n```typescript\nimport { z } from 'zod';\n\nconst addressSchema = z.object({\n  street: z.string().min(1),\n  city: z.string().min(1),\n  zipCode: z.string().regex(/^\\d{5}(-\\d{4})?$/),\n  country: z.string().length(2).toUpperCase()\n});\n\nconst userSchema = z.object({\n  email: z.string().email('Invalid email format'),\n  password: z.string()\n    .min(8, 'Password must be at least 8 characters')\n    .regex(/[A-Z]/, 'Must contain uppercase')\n    .regex(/[0-9]/, 'Must contain number'),\n  confirmPassword: z.string(),\n  age: z.number().int().min(13).max(120).optional(),\n  role: z.enum(['user', 'admin', 'moderator']).default('user'),\n  address: addressSchema.optional(),\n  tags: z.array(z.string()).max(5).default([])\n}).refine(data => data.password === data.confirmPassword, {\n  message: 'Passwords must match',\n  path: ['confirmPassword']\n});\n\n// Type inference\ntype User = z.infer<typeof userSchema>;\n\n// Usage\nfunction createUser(data: unknown) {\n  const result = userSchema.safeParse(data);\n  if (!result.success) {\n    return { errors: result.error.flatten() };\n  }\n  return { user: result.data };\n}\n```",
+  "prompt": "A skill that creates data validation schemas",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

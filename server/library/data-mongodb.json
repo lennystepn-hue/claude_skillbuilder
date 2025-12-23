@@ -1,0 +1,10 @@
+{
+  "id": "premade-mongodb",
+  "name": "mongodb-schema-generator",
+  "description": "Design MongoDB schemas and aggregations",
+  "category": "Data",
+  "content": "---\nname: mongodb-schema-generator\ndescription: When the user needs MongoDB schema design\ncategory: Data\n---\n\n# MongoDB Schema Generator\n\n## Overview\nDesign MongoDB schemas with Mongoose and aggregation pipelines.\n\n## Activation\nActivates when user mentions \"mongodb\", \"mongoose\", \"nosql schema\", or \"aggregation\".\n\n## Instructions\n\n1. Design schema considering:\n   - Embedding vs referencing\n   - Index strategy\n   - Validation rules\n\n2. Create aggregation pipelines\n\n## Examples\n\n**Mongoose Schema:**\n```javascript\nimport mongoose from 'mongoose';\n\nconst userSchema = new mongoose.Schema({\n  email: {\n    type: String,\n    required: true,\n    unique: true,\n    lowercase: true,\n    trim: true\n  },\n  profile: {\n    name: String,\n    avatar: String,\n    bio: { type: String, maxlength: 500 }\n  },\n  // Embedded for frequently accessed data\n  settings: {\n    theme: { type: String, enum: ['light', 'dark'], default: 'light' },\n    notifications: { type: Boolean, default: true }\n  },\n  // Reference for large/separate data\n  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]\n}, {\n  timestamps: true\n});\n\n// Indexes\nuserSchema.index({ email: 1 });\nuserSchema.index({ 'profile.name': 'text' });\n\nexport const User = mongoose.model('User', userSchema);\n```\n\n**Aggregation Pipeline:**\n```javascript\nconst stats = await Order.aggregate([\n  { $match: { status: 'completed', createdAt: { $gte: startDate } } },\n  { $group: {\n      _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },\n      totalOrders: { $sum: 1 },\n      revenue: { $sum: '$total' },\n      avgOrderValue: { $avg: '$total' }\n  }},\n  { $sort: { _id: 1 } }\n]);\n```",
+  "prompt": "A skill that designs MongoDB schemas",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

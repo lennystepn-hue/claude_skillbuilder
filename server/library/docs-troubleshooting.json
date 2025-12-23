@@ -1,0 +1,10 @@
+{
+  "id": "premade-troubleshooting",
+  "name": "troubleshooting-guide",
+  "description": "Generate troubleshooting documentation",
+  "category": "Docs",
+  "content": "---\nname: troubleshooting-guide\ndescription: When the user wants to document common issues and solutions\ncategory: Docs\n---\n\n# Troubleshooting Guide Generator\n\n## Overview\nCreate troubleshooting documentation for common issues.\n\n## Activation\nActivates when user mentions \"troubleshooting\", \"FAQ\", \"common issues\", or \"known problems\".\n\n## Instructions\n\n1. Identify common issues from:\n   - Error messages in code\n   - GitHub issues\n   - Common pitfalls\n\n2. Document each issue:\n   - Symptom (what user sees)\n   - Cause (why it happens)\n   - Solution (how to fix)\n   - Prevention (how to avoid)\n\n## Examples\n\n**Output:**\n```markdown\n# Troubleshooting Guide\n\n## \"ECONNREFUSED\" when starting the app\n\n**Symptom:** App fails to start with connection refused error.\n\n**Cause:** Database is not running or wrong connection string.\n\n**Solution:**\n1. Check if PostgreSQL is running:\n   ```bash\n   sudo systemctl status postgresql\n   ```\n2. Verify DATABASE_URL in .env\n3. Test connection:\n   ```bash\n   psql $DATABASE_URL\n   ```\n\n**Prevention:** Add health check to docker-compose.\n\n---\n\n## \"Module not found\" errors\n\n**Symptom:** Import errors after pulling new code.\n\n**Solution:**\n```bash\nrm -rf node_modules package-lock.json\nnpm install\n```\n```",
+  "prompt": "A skill that generates troubleshooting documentation",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

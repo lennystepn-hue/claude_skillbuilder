@@ -1,0 +1,10 @@
+{
+  "id": "premade-git-workflow",
+  "name": "git-workflow-helper",
+  "description": "Help with git commands and workflows",
+  "category": "Dev",
+  "content": "---\nname: git-workflow-helper\ndescription: When the user needs help with git commands\ncategory: Dev\n---\n\n# Git Workflow Helper\n\n## Overview\nHelp with git commands, branching strategies, and conflict resolution.\n\n## Activation\nActivates when user mentions \"git\", \"branch\", \"merge\", \"rebase\", or version control issues.\n\n## Instructions\n\n1. Understand the git situation:\n   - Current branch state\n   - What they're trying to achieve\n   - Any errors they're seeing\n\n2. Provide:\n   - Exact commands to run\n   - Explanation of what each does\n   - Warnings about destructive operations\n\n3. Common scenarios:\n   - Undo last commit\n   - Resolve merge conflicts\n   - Rebase vs merge\n   - Cherry-pick commits\n   - Stash changes\n\n## Examples\n\n**Input:** \"I committed to wrong branch\"\n\n**Output:**\n```bash\n# 1. Save the commit hash\ngit log -1  # copy the hash\n\n# 2. Undo commit (keep changes)\ngit reset HEAD~1\n\n# 3. Stash changes\ngit stash\n\n# 4. Switch to correct branch\ngit checkout correct-branch\n\n# 5. Apply changes\ngit stash pop\ngit add . && git commit -m \"your message\"\n```",
+  "prompt": "A skill that helps with git commands and workflows",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

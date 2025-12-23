@@ -1,0 +1,10 @@
+{
+  "id": "premade-code-comments",
+  "name": "code-commenter",
+  "description": "Add helpful inline comments to code",
+  "category": "Docs",
+  "content": "---\nname: code-commenter\ndescription: When the user wants to add comments to explain code\ncategory: Docs\n---\n\n# Code Commenter\n\n## Overview\nAdd clear, helpful inline comments that explain complex logic.\n\n## Activation\nActivates when user says \"add comments\", \"explain this code\", or \"comment this\".\n\n## Instructions\n\n1. Identify complex or non-obvious code sections\n2. Add comments that explain:\n   - WHY, not WHAT (code shows what)\n   - Business logic reasoning\n   - Edge cases handled\n   - Algorithm explanations\n\n3. Avoid:\n   - Obvious comments\n   - Redundant descriptions\n   - Outdated information\n\n## Examples\n\n**Input:**\n```javascript\nconst result = arr.reduce((acc, val, i) => {\n  if (i % 2 === 0) acc.evens.push(val);\n  else acc.odds.push(val);\n  return acc;\n}, { evens: [], odds: [] });\n```\n\n**Output:**\n```javascript\n// Partition array elements by their index position (even/odd indices)\n// Used for alternating display in the UI grid layout\nconst result = arr.reduce((acc, val, i) => {\n  if (i % 2 === 0) acc.evens.push(val);  // Even indices: left column\n  else acc.odds.push(val);                // Odd indices: right column\n  return acc;\n}, { evens: [], odds: [] });\n```",
+  "prompt": "A skill that adds helpful comments to my code",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

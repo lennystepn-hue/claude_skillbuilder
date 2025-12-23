@@ -1,0 +1,10 @@
+{
+  "id": "premade-changelog",
+  "name": "changelog-generator",
+  "description": "Generate changelogs from git history",
+  "category": "Docs",
+  "content": "---\nname: changelog-generator\ndescription: When the user wants to create a changelog\ncategory: Docs\n---\n\n# Changelog Generator\n\n## Overview\nGenerate changelogs from git commits following Keep a Changelog format.\n\n## Activation\nActivates when user mentions \"changelog\", \"release notes\", or \"what changed\".\n\n## Instructions\n\n1. Analyze git history since last tag/release\n2. Categorize changes:\n   - Added - New features\n   - Changed - Changes in existing functionality\n   - Deprecated - Soon-to-be removed features\n   - Removed - Removed features\n   - Fixed - Bug fixes\n   - Security - Vulnerability fixes\n\n3. Format following keepachangelog.com\n\n## Examples\n\n**Input:** \"generate changelog for v2.0.0\"\n\n**Output:**\n```markdown\n# Changelog\n\n## [2.0.0] - 2024-01-15\n\n### Added\n- User authentication with OAuth 2.0\n- Dark mode support\n- Export to PDF feature\n\n### Changed\n- Redesigned dashboard UI\n- Improved search performance by 50%\n\n### Fixed\n- Fixed memory leak in image processing\n- Resolved timezone issues in scheduler\n\n### Security\n- Updated dependencies to patch CVE-2024-1234\n```",
+  "prompt": "A skill that generates changelogs from git history",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

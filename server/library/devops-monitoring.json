@@ -1,0 +1,10 @@
+{
+  "id": "premade-monitoring",
+  "name": "monitoring-setup",
+  "description": "Set up application monitoring and alerting",
+  "category": "DevOps",
+  "content": "---\nname: monitoring-setup\ndescription: When the user needs monitoring or observability\ncategory: DevOps\n---\n\n# Monitoring Setup\n\n## Overview\nSet up monitoring, logging, and alerting for applications.\n\n## Activation\nActivates when user mentions \"monitoring\", \"observability\", \"metrics\", \"logging\", or \"alerting\".\n\n## Instructions\n\n1. Determine needs:\n   - Metrics (Prometheus)\n   - Logging (ELK, Loki)\n   - Tracing (Jaeger)\n   - Alerting (AlertManager)\n\n2. Set up dashboards and alerts\n\n## Examples\n\n**Prometheus Metrics (Node.js):**\n```javascript\nimport express from 'express';\nimport promClient from 'prom-client';\n\n// Default metrics\npromClient.collectDefaultMetrics();\n\n// Custom metrics\nconst httpRequestDuration = new promClient.Histogram({\n  name: 'http_request_duration_seconds',\n  help: 'Duration of HTTP requests',\n  labelNames: ['method', 'route', 'status'],\n  buckets: [0.1, 0.5, 1, 2, 5]\n});\n\n// Middleware\napp.use((req, res, next) => {\n  const end = httpRequestDuration.startTimer();\n  res.on('finish', () => {\n    end({ method: req.method, route: req.path, status: res.statusCode });\n  });\n  next();\n});\n\n// Metrics endpoint\napp.get('/metrics', async (req, res) => {\n  res.set('Content-Type', promClient.register.contentType);\n  res.send(await promClient.register.metrics());\n});\n```\n\n**Grafana Alert Rule:**\n```yaml\nalert: HighErrorRate\nexpr: rate(http_requests_total{status=~\"5..\"}[5m]) > 0.1\nfor: 5m\nlabels:\n  severity: critical\nannotations:\n  summary: High error rate detected\n  description: Error rate is {{ $value }} errors/sec\n```",
+  "prompt": "A skill that sets up monitoring and alerting",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

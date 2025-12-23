@@ -1,0 +1,10 @@
+{
+  "id": "premade-backup",
+  "name": "backup-strategy",
+  "description": "Design backup and disaster recovery strategies",
+  "category": "DevOps",
+  "content": "---\nname: backup-strategy\ndescription: When the user needs backup or disaster recovery\ncategory: DevOps\n---\n\n# Backup Strategy\n\n## Overview\nDesign backup and disaster recovery strategies for databases and files.\n\n## Activation\nActivates when user mentions \"backup\", \"disaster recovery\", \"restore\", or \"data protection\".\n\n## Instructions\n\n1. Identify what needs backup:\n   - Databases\n   - User uploads\n   - Configuration\n   - Logs\n\n2. Define strategy:\n   - Frequency (daily, hourly)\n   - Retention policy\n   - Storage location\n   - Testing restore\n\n## Examples\n\n**PostgreSQL Backup Script:**\n```bash\n#!/bin/bash\nset -e\n\nDATE=$(date +%Y%m%d_%H%M%S)\nBACKUP_DIR=\"/backups/postgres\"\nS3_BUCKET=\"s3://my-backups/postgres\"\n\n# Create backup\npg_dump -Fc $DATABASE_URL > \"$BACKUP_DIR/backup_$DATE.dump\"\n\n# Compress\ngzip \"$BACKUP_DIR/backup_$DATE.dump\"\n\n# Upload to S3\naws s3 cp \"$BACKUP_DIR/backup_$DATE.dump.gz\" \"$S3_BUCKET/\"\n\n# Cleanup old local backups (keep 7 days)\nfind $BACKUP_DIR -name \"*.dump.gz\" -mtime +7 -delete\n\necho \"Backup completed: backup_$DATE.dump.gz\"\n```\n\n**Cron Schedule:**\n```cron\n# Daily backup at 2 AM\n0 2 * * * /scripts/backup.sh >> /var/log/backup.log 2>&1\n\n# Hourly WAL archive (point-in-time recovery)\n0 * * * * /scripts/archive-wal.sh\n```\n\n**Restore:**\n```bash\n# Download from S3\naws s3 cp s3://my-backups/postgres/backup_20240115.dump.gz .\ngunzip backup_20240115.dump.gz\n\n# Restore\npg_restore -d mydb backup_20240115.dump\n```",
+  "prompt": "A skill that designs backup strategies",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

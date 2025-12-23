@@ -1,0 +1,10 @@
+{
+  "id": "premade-integration-test",
+  "name": "integration-test-writer",
+  "description": "Generate integration tests for APIs and services",
+  "category": "Testing",
+  "content": "---\nname: integration-test-writer\ndescription: When the user needs integration tests\ncategory: Testing\n---\n\n# Integration Test Writer\n\n## Overview\nGenerate integration tests for APIs, databases, and service interactions.\n\n## Activation\nActivates when user mentions \"integration test\", \"API test\", or \"end-to-end test\".\n\n## Instructions\n\n1. Identify integration points\n2. Create tests for:\n   - API endpoint flows\n   - Database operations\n   - External service calls\n   - Authentication flows\n\n3. Include:\n   - Setup/teardown\n   - Test data fixtures\n   - Mocked external services\n\n## Examples\n\n**Input:** \"integration tests for user API\"\n\n**Output:**\n```javascript\ndescribe('User API Integration', () => {\n  let testUser;\n\n  beforeAll(async () => {\n    await db.migrate.latest();\n  });\n\n  afterEach(async () => {\n    await db('users').del();\n  });\n\n  describe('POST /api/users', () => {\n    it('should create user and return 201', async () => {\n      const res = await request(app)\n        .post('/api/users')\n        .send({ email: 'test@example.com', name: 'Test' })\n        .expect(201);\n\n      expect(res.body.user.email).toBe('test@example.com');\n      \n      // Verify in database\n      const dbUser = await db('users').where('id', res.body.user.id).first();\n      expect(dbUser).toBeDefined();\n    });\n  });\n});\n```",
+  "prompt": "A skill that generates integration tests for APIs",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}

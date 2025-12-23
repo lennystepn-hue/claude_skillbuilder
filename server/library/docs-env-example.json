@@ -1,0 +1,10 @@
+{
+  "id": "premade-env-example",
+  "name": "env-documenter",
+  "description": "Generate .env.example with documentation",
+  "category": "Docs",
+  "content": "---\nname: env-documenter\ndescription: When the user needs environment variable documentation\ncategory: Docs\n---\n\n# Environment Documenter\n\n## Overview\nGenerate documented .env.example files from code analysis.\n\n## Activation\nActivates when user mentions \".env\", \"environment variables\", or \"config documentation\".\n\n## Instructions\n\n1. Scan codebase for:\n   - process.env references\n   - Config file imports\n   - Secret/API key usage\n\n2. Generate .env.example with:\n   - Variable names\n   - Descriptions\n   - Example values (not real secrets)\n   - Required vs optional markers\n\n## Examples\n\n**Output:**\n```bash\n# ===================\n# App Configuration\n# ===================\n\n# Server port (default: 3000)\nPORT=3000\n\n# Environment: development | staging | production\nNODE_ENV=development\n\n# ===================\n# Database\n# ===================\n\n# PostgreSQL connection string (required)\nDATABASE_URL=postgresql://user:pass@localhost:5432/mydb\n\n# ===================\n# Authentication\n# ===================\n\n# JWT secret key - generate with: openssl rand -base64 32\nJWT_SECRET=your-secret-key-here\n\n# Session expiry in seconds (default: 86400 = 24h)\nSESSION_TTL=86400\n\n# ===================\n# External APIs\n# ===================\n\n# Anthropic API key (required for AI features)\nANTHROPIC_API_KEY=sk-ant-api03-...\n```",
+  "prompt": "A skill that generates documented .env.example files",
+  "createdAt": "2024-01-15T10:00:00.000Z",
+  "published": true
+}
