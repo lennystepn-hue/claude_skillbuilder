@@ -238,6 +238,15 @@ export default function App() {
             Describe what your Claude Code skill should do.
             AI generates the SKILL.md – install with one click.
           </p>
+          <a
+            href="https://docs.anthropic.com/en/docs/build-with-claude/claude-code/tutorials/skills"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[#6a9bcc] hover:text-[#6a9bcc]/80 text-sm mt-4 transition"
+          >
+            Learn about Claude Skills
+            <ExternalLink size={12} />
+          </a>
         </div>
 
         {/* Main Input Card */}
@@ -382,6 +391,15 @@ export default function App() {
               <img src="/claude-logo.png" alt="Claude" className="w-3.5 h-3.5 opacity-40" />
               <span>Claude Code</span>
             </div>
+            <span className="text-[#b0aea5]/20">•</span>
+            <a
+              href="https://docs.anthropic.com/en/docs/build-with-claude/claude-code/tutorials/skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#b0aea5] transition"
+            >
+              Docs
+            </a>
             <span className="text-[#b0aea5]/20">•</span>
             <a
               href="https://x.com/lenny_enderle"
