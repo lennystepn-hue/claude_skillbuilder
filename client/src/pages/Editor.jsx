@@ -6,8 +6,10 @@ import toast from "react-hot-toast";
 export default function Editor() {
   const { id } = useParams();
   const [skill, setSkill] = useState(null);
+  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [edited, setEdited] = useState(false);
 
   useEffect(() => {
     fetchSkill();
@@ -18,11 +20,17 @@ export default function Editor() {
       const res = await fetch(`/api/skills/${id}`);
       const data = await res.json();
       setSkill(data.skill);
+      setContent(data.skill?.content || "");
     } catch (err) {
       toast.error("Skill not found.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+    setEdited(true);
   };
 
   const copyToClipboard = async (text) => {
@@ -70,7 +78,7 @@ export default function Editor() {
   };
 
   const downloadSkill = () => {
-    const blob = new Blob([skill.content], { type: "text/markdown" });
+    const blob = new Blob([content], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -121,12 +129,16 @@ export default function Editor() {
               <div className="w-3 h-3 rounded-full bg-[#788c5d]"></div>
               <div className="w-3 h-3 rounded-full bg-[#6a9bcc]"></div>
               <span className="text-[#b0aea5] text-xs ml-2 font-mono">SKILL.md</span>
+              {edited && <span className="text-[#d97757] text-xs ml-2">(edited)</span>}
             </div>
 
-            {/* Code View */}
-            <pre className="flex-1 w-full code-editor rounded-t-none rounded-b-xl p-4 text-[#faf9f5] text-sm overflow-auto whitespace-pre-wrap border border-[#b0aea5]/15 border-t-0">
-              {skill.content}
-            </pre>
+            {/* Code Editor */}
+            <textarea
+              value={content}
+              onChange={handleContentChange}
+              className="flex-1 w-full code-editor rounded-t-none rounded-b-xl p-4 text-[#faf9f5] text-sm overflow-auto resize-none border border-[#b0aea5]/15 border-t-0"
+              spellCheck={false}
+            />
           </div>
         </div>
 
