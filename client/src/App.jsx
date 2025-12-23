@@ -410,6 +410,16 @@ export default function App() {
               <XIcon size={12} />
               <span>lenny_enderle</span>
             </a>
+            <span className="text-[#b0aea5]/20">•</span>
+            <a
+              href="https://buymeacoffee.com/lennyenderle"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-[#d97757] transition"
+            >
+              <Coffee size={12} />
+              <span>Buy me a coffee</span>
+            </a>
           </div>
         </div>
       </main>
