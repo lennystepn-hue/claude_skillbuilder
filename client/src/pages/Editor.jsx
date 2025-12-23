@@ -25,12 +25,48 @@ export default function Editor() {
     }
   };
 
-  const copyInstallCommand = () => {
+  const copyToClipboard = async (text) => {
+    // Try modern clipboard API first (requires HTTPS)
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        // Fall through to fallback
+      }
+    }
+
+    // Fallback for HTTP
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand("copy");
+      textArea.remove();
+      return true;
+    } catch (err) {
+      textArea.remove();
+      return false;
+    }
+  };
+
+  const copyInstallCommand = async () => {
     const command = `Install the skill from ${window.location.origin}/api/skills/${id}/raw to ~/.claude/skills/${skill.name}/SKILL.md`;
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    toast.success("Copied to clipboard!");
-    setTimeout(() => setCopied(false), 2000);
+    const success = await copyToClipboard(command);
+
+    if (success) {
+      setCopied(true);
+      toast.success("Copied to clipboard!");
+      setTimeout(() => setCopied(false), 2000);
+    } else {
+      toast.error("Copy failed. Please select and copy manually.");
+    }
   };
 
   const downloadSkill = () => {
