@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="http://skillbuilder.72.62.43.65.nip.io">
+  <a href="https://skills-claude.com">
     <img src="https://img.shields.io/badge/🚀_Live_Demo-Try_Now-d97757?style=for-the-badge" alt="Live Demo" />
   </a>
   <a href="https://x.com/lenny_enderle">
@@ -56,7 +56,7 @@ Skills teach Claude how to perform specific tasks – from writing commit messag
 
 ## 🚀 Live Demo
 
-**[skillbuilder.72.62.43.65.nip.io](http://skillbuilder.72.62.43.65.nip.io)**
+**[skills-claude.com](https://skills-claude.com)**
 
 ---
 
