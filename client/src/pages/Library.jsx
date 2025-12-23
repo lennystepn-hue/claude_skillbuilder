@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Search, Sparkles, Loader2, Package, Code2, FolderCode, FileText, TestTube, Shield, Database, Cloud, Check, Download, Copy, X } from "lucide-react";
+import { ArrowLeft, Search, Sparkles, Loader2, Package, Code2, FolderCode, FileText, TestTube, Shield, Database, Cloud, Check, Download, Copy, X, Brain, Layout, Server, Wrench, ClipboardList } from "lucide-react";
 import toast from "react-hot-toast";
 
 const categoryIcons = {
@@ -10,6 +10,11 @@ const categoryIcons = {
   Security: <Shield size={12} />,
   DevOps: <Cloud size={12} />,
   Data: <Database size={12} />,
+  AI: <Brain size={12} />,
+  Frontend: <Layout size={12} />,
+  Backend: <Server size={12} />,
+  Productivity: <Wrench size={12} />,
+  Project: <ClipboardList size={12} />,
 };
 
 const categoryColors = {
@@ -19,6 +24,11 @@ const categoryColors = {
   Security: "bg-red-500/20 text-red-400",
   DevOps: "bg-purple-500/20 text-purple-400",
   Data: "bg-yellow-500/20 text-yellow-400",
+  AI: "bg-pink-500/20 text-pink-400",
+  Frontend: "bg-cyan-500/20 text-cyan-400",
+  Backend: "bg-emerald-500/20 text-emerald-400",
+  Productivity: "bg-orange-500/20 text-orange-400",
+  Project: "bg-indigo-500/20 text-indigo-400",
 };
 
 export default function Library() {
