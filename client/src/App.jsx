@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink, FileText, TestTube, Shield, Zap, MessageSquare, Database, Cloud, Bug, Sparkles, AlertTriangle, Coffee, Skull, PartyPopper } from "lucide-react";
+import { Loader2, Library, Terminal, GitBranch, FileCode, Settings, X, Key, ExternalLink, FileText, TestTube, Shield, Zap, MessageSquare, Database, Cloud, Bug, Sparkles, AlertTriangle, Coffee, Skull } from "lucide-react";
 import toast from "react-hot-toast";
 
 // Claude Code Icon
@@ -37,15 +37,35 @@ const scrollingExamples = [
 
 // Easter egg error messages
 const funnyErrors = [
-  { title: "Error 418", message: "I'm a teapot ☕", icon: <Coffee size={16} /> },
+  { title: "Error 418", message: "I'm a teapot", icon: <Coffee size={16} /> },
   { title: "Error 666", message: "Have you tried turning it off and on again?", icon: <Skull size={16} /> },
-  { title: "Warning", message: "This is fine. 🔥", icon: <AlertTriangle size={16} /> },
+  { title: "Warning", message: "This is fine.", icon: <AlertTriangle size={16} /> },
   { title: "Error 404", message: "Motivation not found", icon: <Bug size={16} /> },
   { title: "Fatal Error", message: "Task failed successfully!", icon: <Sparkles size={16} /> },
   { title: "Error 42", message: "The answer was here all along", icon: <Zap size={16} /> },
   { title: "Oops!", message: "You weren't supposed to click that", icon: <AlertTriangle size={16} /> },
-  { title: "Error 🤷", message: "Works on my machine", icon: <Terminal size={16} /> },
+  { title: "Error", message: "Works on my machine", icon: <Terminal size={16} /> },
 ];
+
+// Confetti colors
+const confettiColors = ['#d97757', '#6a9bcc', '#788c5d', '#faf9f5', '#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#f472b6', '#a78bfa'];
+
+// Generate confetti particles once
+const generateConfettiParticles = () => {
+  return [...Array(100)].map((_, i) => ({
+    id: i,
+    color: confettiColors[i % confettiColors.length],
+    size: Math.random() * 12 + 6,
+    startX: 50 + (Math.random() - 0.5) * 10,
+    startY: 50,
+    endX: (Math.random() - 0.5) * 180,
+    endY: Math.random() * 120 + 60,
+    rotation: Math.random() * 1080 - 540,
+    delay: Math.random() * 0.4,
+    duration: 1.8 + Math.random() * 0.8,
+    shape: i % 4, // 0: square, 1: rectangle, 2: circle, 3: triangle
+  }));
+};
 
 export default function App() {
   const [prompt, setPrompt] = useState("");
@@ -61,6 +81,9 @@ export default function App() {
   const [errorWindows, setErrorWindows] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [mainWindowHidden, setMainWindowHidden] = useState(false);
+
+  // Generate confetti particles once
+  const confettiParticles = useMemo(() => generateConfettiParticles(), [showConfetti]);
 
   // Load settings from localStorage
   useEffect(() => {
@@ -82,14 +105,12 @@ export default function App() {
     e.stopPropagation();
 
     if (!chaosMode) {
-      // First click - start chaos
       setChaosMode(true);
       setGlitching(true);
 
       setTimeout(() => {
         setGlitching(false);
         setMainWindowHidden(true);
-        // Spawn initial error windows
         spawnErrorWindows(3);
       }, 800);
     }
@@ -102,8 +123,8 @@ export default function App() {
       newWindows.push({
         id: Date.now() + i,
         ...error,
-        x: Math.random() * 60 + 20, // 20-80%
-        y: Math.random() * 50 + 20, // 20-70%
+        x: Math.random() * 60 + 20,
+        y: Math.random() * 50 + 20,
         rotation: (Math.random() - 0.5) * 20,
       });
     }
@@ -111,17 +132,12 @@ export default function App() {
   };
 
   const handleErrorWindowClose = (id) => {
-    // Remove this window
     setErrorWindows(prev => prev.filter(w => w.id !== id));
-
-    // Check total clicks
     const totalWindows = errorWindows.length;
 
     if (totalWindows >= 6) {
-      // End the chaos with confetti
       endChaos();
     } else {
-      // Spawn more windows!
       setTimeout(() => spawnErrorWindows(2), 100);
     }
   };
@@ -134,8 +150,8 @@ export default function App() {
       setShowConfetti(false);
       setChaosMode(false);
       setMainWindowHidden(false);
-      toast.success("Nice try! 😏", { icon: "🎉" });
-    }, 2000);
+      toast.success("Nice try!", { icon: "🎉" });
+    }, 2500);
   };
 
   const handleGenerate = async () => {
@@ -235,7 +251,7 @@ export default function App() {
               <button
                 onClick={handleRedButtonClick}
                 className="terminal-dot bg-[#d97757] hover:bg-red-500 hover:scale-125 transition-all cursor-pointer"
-                title="Close? 🤔"
+                title="Close?"
               />
               <div className="terminal-dot bg-[#788c5d]"></div>
               <div className="terminal-dot bg-[#6a9bcc]"></div>
@@ -308,21 +324,28 @@ export default function App() {
           </div>
         ))}
 
-        {/* Confetti Effect */}
+        {/* Real Confetti Explosion */}
         {showConfetti && (
-          <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
-            <div className="text-6xl animate-bounce">🎉</div>
-            {[...Array(20)].map((_, i) => (
+          <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+            {confettiParticles.map((particle) => (
               <div
-                key={i}
-                className="absolute text-2xl animate-confetti"
+                key={particle.id}
+                className="absolute confetti-particle"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 0.5}s`,
+                  left: `${particle.startX}%`,
+                  top: `${particle.startY}%`,
+                  width: particle.shape === 1 ? particle.size * 0.4 : particle.size,
+                  height: particle.shape === 1 ? particle.size * 1.8 : particle.size,
+                  backgroundColor: particle.color,
+                  borderRadius: particle.shape === 2 ? '50%' : particle.shape === 3 ? '0' : '2px',
+                  clipPath: particle.shape === 3 ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : 'none',
+                  '--end-x': `${particle.endX}vw`,
+                  '--end-y': `${particle.endY}vh`,
+                  '--rotation': `${particle.rotation}deg`,
+                  animationDelay: `${particle.delay}s`,
+                  animationDuration: `${particle.duration}s`,
                 }}
-              >
-                {["🎊", "✨", "🎉", "⭐", "🌟"][Math.floor(Math.random() * 5)]}
-              </div>
+              />
             ))}
           </div>
         )}
